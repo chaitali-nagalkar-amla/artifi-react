@@ -1,0 +1,20 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "@nrwl/nx-cloud": "^16.0.5",
+    "lerna": "^6.6.2"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:headless": "npx lerna run start  && npm i && lerna run start --parallel  --scope=@artifi/headless",
+    "dev:layout": "npx lerna run start  && npm i && lerna run start --parallel  --scope=@artifi/tablayout",
+    "dev:watch": "npx lerna run build:watch  --parallel",
+    "graph": "npx nx graph"
+  },
+  "dependencies": {
+    "path": "^0.12.7"
+  }
+}

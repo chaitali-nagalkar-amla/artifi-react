@@ -1,0 +1,22 @@
+ @font-face {
+      font-family: 'Roboto';
+      src: local("Roboto-Regular"),
+      url('../../packages/headless/public/Fonts/Roboto-Regular.ttf') format('truetype')
+    }
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Roboto;
+    font-weight: regular;
+    padding: 15px;
+}
+.wrapper{
+    display: flex;
+}
+.editor-wrapper{
+    width: 800px;
+}
+.control-wrapper{width: 400px;}
+.heading{font-size: 16px; margin-top: 10px;}

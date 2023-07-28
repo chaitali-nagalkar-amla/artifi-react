@@ -1,0 +1,36 @@
+@tailwind base;
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  .text-color-list, .custom-scroll-text, .custom-scroll{
+    scrollbar-width: thin;
+    scrollbar-color: #d4d4d4 #b4b3b3;
+  }
+  svg{display: inline-block;}
+  /* Chrome, Edge, and Safari */
+  .custom-scroll::-webkit-scrollbar, .text-color-list::-webkit-scrollbar, .custom-scroll-text::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  .custom-scroll::-webkit-scrollbar-track, .text-color-list::-webkit-scrollbar-track{
+    background: #e5e7eb;
+    border-radius: 10px;
+  }
+
+  .custom-scroll::-webkit-scrollbar-thumb, .text-color-list::-webkit-scrollbar-thumb {
+    background-color: #737373;
+    border-radius: 10px;
+    border: 0px solid #ffffff;
+  }
+  .custom-scroll-text::-webkit-scrollbar{
+    width: 10px;
+  }
+.custom-scroll-text::-webkit-scrollbar-thumb{
+ background-color: #c4c4c4 ;
+  border-radius: 5px;
+  border: 3px solid white;
+}
+/*   */
+@tailwind components;
+@tailwind utilities;

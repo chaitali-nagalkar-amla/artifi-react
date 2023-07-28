@@ -1,0 +1,13 @@
+{
+    "cSpell.words": [
+        "artifi",
+        "clipart",
+        "cliparts"
+    ],
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    }
+}

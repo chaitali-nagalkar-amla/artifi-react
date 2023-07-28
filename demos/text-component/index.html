@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../Artifi.headless.js"></script>
+  <script src="../Artifi.543.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div id="artifi-editor" class="editor-wrapper"></div>
+    <div class="control-wrapper">
+      <div id="artifi-text-widgetList"></div>
+      <!-- <div id="artifi-text-widgetMergeList"></div> -->
+      <div id="artifi-text-area">
+        <h3 class="heading">Text Editor</h3>
+      </div>
+      <div id="artifi-text-controls"></div>
+    </div>
+    <div id="artifi"></div>
+
+    <script>
+      window.onload = () => {
+
+        // Get the current URL
+        const url = new URL(window.location.href);
+
+        // Access the search parameters
+        const searchParams = new URLSearchParams(url.search);
+
+        // Get a specific parameter by name
+        const webApiClientKey = searchParams.get('webApiClientKey');
+        const websiteId = searchParams.get('websiteId');
+        const userId = searchParams.get('userId');
+        const isGuest = searchParams.get('isGuest');
+        const sku = searchParams.get('sku');
+        const customizedProductId = searchParams.get('customizedProductId');
+
+
+
+        Artifi.initialize({
+          webApiClientKey: webApiClientKey,
+          websiteId: websiteId,
+          userId: userId,
+          isGuest: isGuest,
+          sku: sku,
+          customizedProductId: customizedProductId
+        });
+      };
+    </script>
+  </div>
+</body>
+
+</html>

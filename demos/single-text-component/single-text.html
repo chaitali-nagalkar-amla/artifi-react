@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../Artifi.headless.js"></script>
+  <script src="../Artifi.543.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div id="artifi-product-views"></div>
+    <div id="artifi-editor" class="editor-wrapper"></div>
+    <div class="control-wrapper">
+      <div class="cart-btn">
+        <div id="artifi-add-to-cart"></div>
+      </div>
+      <div id="artifi-text-widgetList" data-text-id="text_1">
+        <h3 style="font-size: 16px; margin-top: 10px;">Text Editor</h3>
+      </div>
+    </div>
+    <div id="artifi"></div>
+
+    <script>
+      window.onload = () => {
+        Artifi.initialize({
+          webApiClientKey: "185365d1-5cb0-4a9e-98bd-a9ce0b34cedc",
+          websiteId: 423,
+          userId: 52,
+          isGuest: true,
+          sku: "mvp-adidas-yellow2",
+        });
+      };
+    </script>
+  </div>
+</body>
+
+</html>

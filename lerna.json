@@ -1,0 +1,14 @@
+
+{
+   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "packages": [
+    "packages/*"
+  ],
+   "version": "3.0.2",
+  "includeMergedTags": true,
+  "command": {
+    "publish": {
+      "registry": "https://npm.pkg.github.com"
+    }
+  }
+}
