@@ -6,7 +6,7 @@ import {
   getActiveViewId,
   getAllViewsData,
   useSliceSelector,
-} from "@artifi/editor";
+} from "@chaitali-nagalkar-amla/editor";
 import { useDispatch } from "react-redux";
 
 interface ProductViewProps {}

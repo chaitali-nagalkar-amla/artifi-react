@@ -1,4 +1,8 @@
-import { Constants, getAPIData, getAPIUrl } from "@artifi/common";
+import {
+  Constants,
+  getAPIData,
+  getAPIUrl,
+} from "@chaitali-nagalkar-amla/common";
 import {
   isCustomizedVariant,
   getEditorDataFromProductData,

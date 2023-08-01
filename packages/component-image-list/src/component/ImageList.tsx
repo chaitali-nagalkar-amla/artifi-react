@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Clipart } from "@artifi/clipart";
-import { Upload } from "@artifi/upload";
+import { Clipart } from "@chaitali-nagalkar-amla/clipart";
+import { Upload } from "@chaitali-nagalkar-amla/upload";
 import { ChangeWidgetIcon, DeleteWidgetIcon } from "../icons/Icons";
 interface ImageListProps {
   imageWidgets: Array<IImageWidgetsData>;

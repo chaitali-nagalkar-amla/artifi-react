@@ -1,8 +1,8 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import { TextUpdater } from "./TextUpdater";
-import { ITextBoxRule } from "@artifi/editor";
-import { Italic } from "@artifi/font-style";
+import { ITextBoxRule } from "@chaitali-nagalkar-amla/editor";
+import { Italic } from "@chaitali-nagalkar-amla/font-style";
 
 export function ItalicWithUpdate() {
   const italic = document.getElementById("artifi-text-italic");

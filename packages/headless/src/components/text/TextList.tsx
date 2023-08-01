@@ -4,15 +4,15 @@ import {
   ITextBoxRule,
   getActiveWidgetData,
   widgetConstants,
-} from "@artifi/editor";
+} from "@chaitali-nagalkar-amla/editor";
 import { TextUpdater } from "./TextUpdater";
 import { TextControls } from "./TextControls";
 import {
   useSliceSelector,
   getWidgetsListByType,
   getRuleDataByWidgetId,
-} from "@artifi/editor";
-import { TextArea } from "@artifi/text-area";
+} from "@chaitali-nagalkar-amla/editor";
+import { TextArea } from "@chaitali-nagalkar-amla/text-area";
 interface TextListProps {
   textWidgets: Array<ITextWidgetsData>;
   viewCode: string;

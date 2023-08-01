@@ -9,8 +9,8 @@
     "packages/*"
   ],
   "scripts": {
-    "dev:headless": "npx lerna run start  && npm i && lerna run start --parallel  --scope=@artifi/headless",
-    "dev:layout": "npx lerna run start  && npm i && lerna run start --parallel  --scope=@artifi/tablayout",
+    "dev:headless": "npx lerna run start  && npm i && lerna run start --parallel  --scope=@chaitali-nagalkar-amla/headless",
+    "dev:layout": "npx lerna run start  && npm i && lerna run start --parallel  --scope=@chaitali-nagalkar-amla/tablayout",
     "dev:watch": "npx lerna run build:watch  --parallel",
     "graph": "npx nx graph"
   },

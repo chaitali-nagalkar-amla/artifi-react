@@ -1,5 +1,5 @@
 import { ClipartConstants } from "../constants/ClipartConstant";
-import { Constants, getAPIData } from "@artifi/common";
+import { Constants, getAPIData } from "@chaitali-nagalkar-amla/common";
 import { ClipartImageType } from "../type/ClipartType";
 
 // A mock function to mimic making an async request for data

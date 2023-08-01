@@ -1,12 +1,15 @@
-import { addToCartDesign } from "@artifi/add-to-cart";
-import { Constants, IntegrationConstants } from "@artifi/common";
+import { addToCartDesign } from "@chaitali-nagalkar-amla/add-to-cart";
+import {
+  Constants,
+  IntegrationConstants,
+} from "@chaitali-nagalkar-amla/common";
 import {
   changeSKU,
   getEditorData,
   getProductViewsData,
   getSelectedSKU,
   useSliceSelector,
-} from "@artifi/editor";
+} from "@chaitali-nagalkar-amla/editor";
 import React, { useEffect, useRef, useState } from "react";
 
 import { useDispatch } from "react-redux";

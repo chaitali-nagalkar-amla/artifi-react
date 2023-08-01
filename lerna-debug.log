@@ -6,15 +6,15 @@
 0 silly argv }
 1 notice cli v6.6.2
 2 verbose rootPath D:\RTK-Reackt\artifi-rtk-research-repo
-3 error JSONError: Unexpected token "/" (0x2F) in JSON at position 306 while parsing near "...ignment\": \"*\",\r\n    // \"@artifi/vertical..." in ..\packages\tablayout\package.json
+3 error JSONError: Unexpected token "/" (0x2F) in JSON at position 306 while parsing near "...ignment\": \"*\",\r\n    // \"@chaitali-nagalkar-amla/vertical..." in ..\packages\tablayout\package.json
 3 error
-3 error [0m [90m 10 |[39m     [32m"@artifi/font-style"[39m[33m:[39m [32m"*"[39m[33m,[39m[0m
-3 error [0m [90m 11 |[39m     [32m"@artifi/horizontal-alignment"[39m[33m:[39m [32m"*"[39m[33m,[39m[0m
-3 error [0m[31m[1m>[22m[39m[90m 12 |[39m     [90m// "@artifi/vertical-alignment": "*",[39m[0m
+3 error [0m [90m 10 |[39m     [32m"@chaitali-nagalkar-amla/font-style"[39m[33m:[39m [32m"*"[39m[33m,[39m[0m
+3 error [0m [90m 11 |[39m     [32m"@chaitali-nagalkar-amla/horizontal-alignment"[39m[33m:[39m [32m"*"[39m[33m,[39m[0m
+3 error [0m[31m[1m>[22m[39m[90m 12 |[39m     [90m// "@chaitali-nagalkar-amla/vertical-alignment": "*",[39m[0m
 3 error [0m [90m    |[39m     [31m[1m^[22m[39m[0m
-3 error [0m [90m 13 |[39m     [32m"@artifi/text-color"[39m[33m:[39m [32m"*"[39m[33m,[39m[0m
-3 error [0m [90m 14 |[39m     [32m"@artifi/text-area"[39m[33m:[39m [32m"*"[39m[33m,[39m[0m
-3 error [0m [90m 15 |[39m     [32m"@artifi/delete-text"[39m[33m:[39m [32m"*"[39m[33m,[39m[0m
+3 error [0m [90m 13 |[39m     [32m"@chaitali-nagalkar-amla/text-color"[39m[33m:[39m [32m"*"[39m[33m,[39m[0m
+3 error [0m [90m 14 |[39m     [32m"@chaitali-nagalkar-amla/text-area"[39m[33m:[39m [32m"*"[39m[33m,[39m[0m
+3 error [0m [90m 15 |[39m     [32m"@chaitali-nagalkar-amla/delete-text"[39m[33m:[39m [32m"*"[39m[33m,[39m[0m
 3 error
 3 error     at parseJson (D:\RTK-Reackt\artifi-rtk-research-repo\node_modules\parse-json\index.js:29:21)
 3 error     at parse (D:\RTK-Reackt\artifi-rtk-research-repo\node_modules\load-json-file\index.js:15:9)

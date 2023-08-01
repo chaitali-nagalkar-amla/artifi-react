@@ -14,7 +14,7 @@ import {
   sendArtifiLaunchingError,
   IntegrationConstants,
   getPreviewUrl,
-} from "@artifi/common";
+} from "@chaitali-nagalkar-amla/common";
 
 import { InitializeConfigType } from "./type/Type";
 import App from "./App";

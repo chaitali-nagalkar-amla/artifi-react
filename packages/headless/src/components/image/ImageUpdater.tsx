@@ -1,4 +1,4 @@
-import { Constants } from "@artifi/common";
+import { Constants } from "@chaitali-nagalkar-amla/common";
 import {
   updateWidget,
   useSliceSelector,
@@ -9,10 +9,10 @@ import {
   widgetConstants,
   deleteWidgetById,
   selectWidgetById,
-} from "@artifi/editor";
+} from "@chaitali-nagalkar-amla/editor";
 import { useDispatch } from "react-redux";
 import { IImageProps, IImageUpdater } from "../../type/ImageProps";
-import { convertStringToBoolean } from "@artifi/common";
+import { convertStringToBoolean } from "@chaitali-nagalkar-amla/common";
 
 export const ImageUpdater = ({
   details,
@@ -26,7 +26,13 @@ export const ImageUpdater = ({
   //imageRuleData
   const imageRuleData = useSliceSelector((state: any) => {
     if (widgetId) {
-      return getRuleDataByWidgetId(state, widgetConstants.IMAGE, widgetId, viewCode, false);
+      return getRuleDataByWidgetId(
+        state,
+        widgetConstants.IMAGE,
+        widgetId,
+        viewCode,
+        false
+      );
     } else {
       return getRuleDataByWidgetId(state, widgetConstants.IMAGE, "", "", false);
     }

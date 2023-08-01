@@ -1,7 +1,7 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import { TextUpdater } from "./TextUpdater";
-import { ITextBoxRule } from "@artifi/editor";
+import { ITextBoxRule } from "@chaitali-nagalkar-amla/editor";
 import { TextControls } from "./TextControls";
 export function TextControlsWithUpdate() {
   const textControls = document.getElementById("artifi-text-controls");

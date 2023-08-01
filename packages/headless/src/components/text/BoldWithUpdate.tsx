@@ -1,8 +1,8 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import { TextUpdater } from "./TextUpdater";
-import { ITextBoxRule } from "@artifi/editor";
-import { Bold } from "@artifi/font-weight";
+import { ITextBoxRule } from "@chaitali-nagalkar-amla/editor";
+import { Bold } from "@chaitali-nagalkar-amla/font-weight";
 
 export function BoldWithUpdate() {
   const textArea = document.getElementById("artifi-text-area");

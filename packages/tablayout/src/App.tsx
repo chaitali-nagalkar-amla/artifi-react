@@ -1,21 +1,21 @@
 import React from "react";
-// import { UserImages } from "@artifi/image";
-// import {Clipart} from "@artifi/clipart";
-// import { UserImages } from "@artifi/image";
-// import { Clipart } from "@artifi/clipart";
-// import { Bold } from "@artifi/font-weight";
-// import { Italic } from "@artifi/font-style";
-// import { VerticalAlignment } from "@artifi/vertical-alignment";
-// import { HorizontalAlignment } from "@artifi/horizontal-alignment";
-// import { ColorSwatches } from "@artifi/text-color";
-// import { TextArea } from "@artifi/text-area";
-// import { DeleteText } from "@artifi/delete-text";
-// import { FontFamily } from "@artifi/font-family";
-// import { FontSize } from "@artifi/font-size";
-// import { TextList } from "@artifi/textlist";
-// import { ImageList } from "@artifi/imagelist";
+// import { UserImages } from "@chaitali-nagalkar-amla/image";
+// import {Clipart} from "@chaitali-nagalkar-amla/clipart";
+// import { UserImages } from "@chaitali-nagalkar-amla/image";
+// import { Clipart } from "@chaitali-nagalkar-amla/clipart";
+// import { Bold } from "@chaitali-nagalkar-amla/font-weight";
+// import { Italic } from "@chaitali-nagalkar-amla/font-style";
+// import { VerticalAlignment } from "@chaitali-nagalkar-amla/vertical-alignment";
+// import { HorizontalAlignment } from "@chaitali-nagalkar-amla/horizontal-alignment";
+// import { ColorSwatches } from "@chaitali-nagalkar-amla/text-color";
+// import { TextArea } from "@chaitali-nagalkar-amla/text-area";
+// import { DeleteText } from "@chaitali-nagalkar-amla/delete-text";
+// import { FontFamily } from "@chaitali-nagalkar-amla/font-family";
+// import { FontSize } from "@chaitali-nagalkar-amla/font-size";
+// import { TextList } from "@chaitali-nagalkar-amla/textlist";
+// import { ImageList } from "@chaitali-nagalkar-amla/imagelist";
 
-// import { Upload } from "@artifi/upload";
+// import { Upload } from "@chaitali-nagalkar-amla/upload";
 
 function App() {
   return (

@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Clipart } from "@artifi/clipart";
-import { Upload } from "@artifi/upload";
-import { useSliceSelector, getActiveWidgetData } from "@artifi/editor";
+import { Clipart } from "@chaitali-nagalkar-amla/clipart";
+import { Upload } from "@chaitali-nagalkar-amla/upload";
+import {
+  useSliceSelector,
+  getActiveWidgetData,
+} from "@chaitali-nagalkar-amla/editor";
 import { ChangeWidgetIcon, DeleteWidgetIcon } from "../icons/Icons";
 import { ImageWidgetListProps } from "../../type/ImageProps";
 
-const ImageWidgetList: React.FC<ImageWidgetListProps> = ({ imageWidgets, ruleData, onUpdate }) => {
+const ImageWidgetList: React.FC<ImageWidgetListProps> = ({
+  imageWidgets,
+  ruleData,
+  onUpdate,
+}) => {
   const [clipart, showClipart] = useState(false);
   const [widgetId, setWidgetId] = useState("");
   const [viewId, setViewId] = useState("");
@@ -15,8 +22,8 @@ const ImageWidgetList: React.FC<ImageWidgetListProps> = ({ imageWidgets, ruleDat
   );
   useEffect(() => {
     if (activeWidget) {
-      setWidgetId(activeWidget.id)
-      setViewId(activeWidget.viewId)
+      setWidgetId(activeWidget.id);
+      setViewId(activeWidget.viewId);
     }
   }, [activeWidget]);
 
@@ -41,7 +48,7 @@ const ImageWidgetList: React.FC<ImageWidgetListProps> = ({ imageWidgets, ruleDat
     );
     const imgcategory = event.target.closest(
       '[data-art-container="image-category"]'
-    )
+    );
     if (!uploadUserImageArea && !imgcategory) {
       showClipart(false);
       setWidgetId("");
@@ -62,50 +69,66 @@ const ImageWidgetList: React.FC<ImageWidgetListProps> = ({ imageWidgets, ruleDat
             </label>
             {/* Show clipart panel */}
             <div className="flex items-center min-w-[90px] justify-between">
-              {ruleData && ruleData.cliparts && ruleData.cliparts.allow &&
-                ruleData.allowEditable && ruleData.allowEditable.allow &&
-                <button data-art-container="replace-image-area" className="text-black"
-                  onClick={() => showClipartPanel(imageWidgets.id, imageWidgets.viewId)}
-                ><ChangeWidgetIcon />
-                </button>
-              }
+              {ruleData &&
+                ruleData.cliparts &&
+                ruleData.cliparts.allow &&
+                ruleData.allowEditable &&
+                ruleData.allowEditable.allow && (
+                  <button
+                    data-art-container="replace-image-area"
+                    className="text-black"
+                    onClick={() =>
+                      showClipartPanel(imageWidgets.id, imageWidgets.viewId)
+                    }
+                  >
+                    <ChangeWidgetIcon />
+                  </button>
+                )}
               {/* Show Upload component */}
-              {ruleData && ruleData.userImage && ruleData.userImage.allow &&
-                ruleData.allowEditable && ruleData.allowEditable.allow &&
-                <Upload
-                  onUploadSuccess={onUpdate}
-                  onUploadError={(data: any) => {
-                    showUploadError(imageWidgets.id, data.message)
-                    //setUploadError(data.message);
-                  }}
-                  uploadType={imageWidgets.id}
-                ></Upload>
-              }
+              {ruleData &&
+                ruleData.userImage &&
+                ruleData.userImage.allow &&
+                ruleData.allowEditable &&
+                ruleData.allowEditable.allow && (
+                  <Upload
+                    onUploadSuccess={onUpdate}
+                    onUploadError={(data: any) => {
+                      showUploadError(imageWidgets.id, data.message);
+                      //setUploadError(data.message);
+                    }}
+                    uploadType={imageWidgets.id}
+                  ></Upload>
+                )}
               {/* Show delete option */}
-              {ruleData && ruleData.allowDelete && ruleData.allowDelete.allow &&
-                <button
-                  className="text-black"
-                  data-art-id={imageWidgets.id}
-                  onClick={() =>
-                    onUpdate({
-                      widgetId: imageWidgets.id,
-                      deleteWidget: true
-                    })
-                  }
-                >
-                  <DeleteWidgetIcon />
-                </button>
-              }
+              {ruleData &&
+                ruleData.allowDelete &&
+                ruleData.allowDelete.allow && (
+                  <button
+                    className="text-black"
+                    data-art-id={imageWidgets.id}
+                    onClick={() =>
+                      onUpdate({
+                        widgetId: imageWidgets.id,
+                        deleteWidget: true,
+                      })
+                    }
+                  >
+                    <DeleteWidgetIcon />
+                  </button>
+                )}
             </div>
-            {uploadError && (imageWidgets.id == widgetId) && (
-              <span id={imageWidgets.id} className="text-red-600">{uploadError}</span>)}
+            {uploadError && imageWidgets.id == widgetId && (
+              <span id={imageWidgets.id} className="text-red-600">
+                {uploadError}
+              </span>
+            )}
           </div>
           {clipart && imageWidgets.id == widgetId && (
             <div id={imageWidgets.id} className="mb-3">
               <Clipart
                 onSelect={onUpdate}
                 ruleData={ruleData}
-              //widgetId={widgetId}
+                //widgetId={widgetId}
               />
             </div>
           )}

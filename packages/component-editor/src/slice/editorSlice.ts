@@ -43,7 +43,7 @@ import {
   sendArtifiWidgetAdded,
   sendArtifiWidgetDeleted,
   sendArtifiWidgetUpdated,
-} from "@artifi/common";
+} from "@chaitali-nagalkar-amla/common";
 
 export interface EditorState {
   value: number;

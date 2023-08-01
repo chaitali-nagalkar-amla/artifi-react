@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addWidget, widgetConstants } from "@artifi/editor";
+import { addWidget, widgetConstants } from "@chaitali-nagalkar-amla/editor";
 export function AddTextWidgetWithArea() {
   const dispatch = useDispatch();
   const [text, setText] = useState("");

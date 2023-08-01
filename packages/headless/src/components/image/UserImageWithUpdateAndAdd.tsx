@@ -1,7 +1,10 @@
 import { createPortal } from "react-dom";
-import { UserImages } from "@artifi/image";
+import { UserImages } from "@chaitali-nagalkar-amla/image";
 import { ImageUpdater } from "./ImageUpdater";
-import { getActiveWidgetData, useSliceSelector } from "@artifi/editor";
+import {
+  getActiveWidgetData,
+  useSliceSelector,
+} from "@chaitali-nagalkar-amla/editor";
 
 export function UserImageWithUpdateAndAdd() {
   const userImagesContainer = document.getElementById("artifi-user-images");

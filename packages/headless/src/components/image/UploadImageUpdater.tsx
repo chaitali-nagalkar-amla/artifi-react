@@ -4,10 +4,10 @@ import {
   widgetConstants,
   addWidget,
   updateWidget,
-} from "@artifi/editor";
+} from "@chaitali-nagalkar-amla/editor";
 import { useDispatch } from "react-redux";
 import { IImageProps } from "../../type/ImageProps";
-import { convertStringToBoolean } from "@artifi/common";
+import { convertStringToBoolean } from "@chaitali-nagalkar-amla/common";
 
 export function UploadImageUpdater({
   details,

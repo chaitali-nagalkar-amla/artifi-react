@@ -1,13 +1,16 @@
-import { Constants, getAPIData } from "@artifi/common";
-import { DELETE_USER_PHOTO_API, USER_PHOTO_API, UserImageConstants } from "../constants/UserImageConstant";
+import { Constants, getAPIData } from "@chaitali-nagalkar-amla/common";
+import {
+  DELETE_USER_PHOTO_API,
+  USER_PHOTO_API,
+  UserImageConstants,
+} from "../constants/UserImageConstant";
 import { IUserImageType } from "../type/UserImageType";
-
 
 // Delete user image api
 export async function deleteUserImage(photoId: number): Promise<any> {
   return await getAPIData(DELETE_USER_PHOTO_API, {
     userId: Constants.APP_CONFIG.USER_ID,
-    photoId
+    photoId,
   });
 }
 

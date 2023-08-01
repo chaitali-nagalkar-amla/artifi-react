@@ -1,5 +1,5 @@
 {
-  "name": "@artifi/editor",
+  "name": "@chaitali-nagalkar-amla/editor",
   "version": "3.0.4",
   "description": "The editor feature",
   "main": "lib/index.js",
@@ -21,7 +21,7 @@
     "typescript": "^4.5.4"
   },
   "dependencies": {
-    "@artifi/common": "^3.0.4",
+    "@chaitali-nagalkar-amla/common": "^3.0.4",
     "@reduxjs/toolkit": "^1.7.1",
     "fabric": "^5.3.0",
     "lodash": "^4.17.21",
