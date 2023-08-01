@@ -1,4 +1,4 @@
-import { generateURL } from "@artifi/common";
+import { generateURL } from "@chaitali-nagalkar-amla/common";
 
 export const PRODUCT_VIEWS_API_URL = generateURL(
   "api/v1/ProductView/GetProductViews"

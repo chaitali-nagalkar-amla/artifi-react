@@ -1,9 +1,9 @@
-import { Bold } from "@artifi/font-weight";
-import { Italic } from "@artifi/font-style";
-import { FontFamily } from "@artifi/font-family";
-import { FontSize } from "@artifi/font-size";
-import { ColorSwatches } from "@artifi/text-color";
-import { HorizontalAlignment } from "@artifi/horizontal-alignment";
+import { Bold } from "@chaitali-nagalkar-amla/font-weight";
+import { Italic } from "@chaitali-nagalkar-amla/font-style";
+import { FontFamily } from "@chaitali-nagalkar-amla/font-family";
+import { FontSize } from "@chaitali-nagalkar-amla/font-size";
+import { ColorSwatches } from "@chaitali-nagalkar-amla/text-color";
+import { HorizontalAlignment } from "@chaitali-nagalkar-amla/horizontal-alignment";
 import { useTranslation } from "react-i18next";
 
 export function TextControls({ ruleData, textData, onUpdate, viewId }: any) {

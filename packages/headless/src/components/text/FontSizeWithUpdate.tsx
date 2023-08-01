@@ -1,8 +1,8 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import { TextUpdater } from "./TextUpdater";
-import { ITextBoxRule } from "@artifi/editor";
-import { FontSize } from "@artifi/font-size";
+import { ITextBoxRule } from "@chaitali-nagalkar-amla/editor";
+import { FontSize } from "@chaitali-nagalkar-amla/font-size";
 
 export function FontSizeWithUpdate() {
   const fontSize = document.getElementById("artifi-text-size");

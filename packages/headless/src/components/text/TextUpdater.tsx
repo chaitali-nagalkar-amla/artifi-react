@@ -4,8 +4,8 @@ import {
   getRuleDataByWidgetId,
   getWidgetDataById,
   widgetConstants,
-} from "@artifi/editor";
-import { Constants } from "@artifi/common";
+} from "@chaitali-nagalkar-amla/editor";
+import { Constants } from "@chaitali-nagalkar-amla/common";
 import { useDispatch } from "react-redux";
 import { TextProps } from "../../type/TextProps";
 import { useEffect, useState } from "react";

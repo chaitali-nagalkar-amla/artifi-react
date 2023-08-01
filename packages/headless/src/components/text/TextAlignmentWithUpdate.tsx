@@ -1,8 +1,8 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import { TextUpdater } from "./TextUpdater";
-import { ITextBoxRule } from "@artifi/editor";
-import { HorizontalAlignment } from "@artifi/horizontal-alignment";
+import { ITextBoxRule } from "@chaitali-nagalkar-amla/editor";
+import { HorizontalAlignment } from "@chaitali-nagalkar-amla/horizontal-alignment";
 
 export function TextAlignmentWithUpdate() {
   const hrAlignment = document.getElementById("artifi-horizontal-alignment");

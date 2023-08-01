@@ -4,7 +4,7 @@ import {
   useSliceSelector,
   getWidgetDataById,
   selectWidgetById,
-} from "@artifi/editor";
+} from "@chaitali-nagalkar-amla/editor";
 import { ValidateText } from "../textHelperFunctions/TextValidation";
 import { useDispatch } from "react-redux";
 interface TextAreaProps {

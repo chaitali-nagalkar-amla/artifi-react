@@ -1,5 +1,5 @@
 {
-  "name": "@artifi/font-size",
+  "name": "@chaitali-nagalkar-amla/font-size",
   "version": "3.0.4",
   "description": "Font Size Component",
   "main": "lib/index.js",
@@ -20,7 +20,7 @@
     "typescript": "^4.5.4"
   },
   "dependencies": {
-    "@artifi/common": "^3.0.4",
+    "@chaitali-nagalkar-amla/common": "^3.0.4",
     "@reduxjs/toolkit": "^1.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

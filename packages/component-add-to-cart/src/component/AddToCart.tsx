@@ -8,9 +8,9 @@ import {
   getProductViewsData,
   useSliceSelector,
   getSelectedSKU,
-} from "@artifi/editor";
+} from "@chaitali-nagalkar-amla/editor";
 
-import { Constants } from "@artifi/common";
+import { Constants } from "@chaitali-nagalkar-amla/common";
 
 import { useTranslation } from "react-i18next";
 

@@ -1,8 +1,8 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import { TextUpdater } from "./TextUpdater";
-import { ITextBoxRule } from "@artifi/editor";
-import { FontFamily } from "@artifi/font-family";
+import { ITextBoxRule } from "@chaitali-nagalkar-amla/editor";
+import { FontFamily } from "@chaitali-nagalkar-amla/font-family";
 
 export function FontFamilyWithUpdate() {
   const fontFamily = document.getElementById("artifi-text-family");

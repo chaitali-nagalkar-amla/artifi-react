@@ -3,7 +3,7 @@ import {
   changeSKU,
   getAllViewsData,
   useSliceSelector,
-} from "@artifi/editor";
+} from "@chaitali-nagalkar-amla/editor";
 
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
@@ -22,13 +22,16 @@ import { TextControlsWithUpdate } from "./components/text/TextControlsWithUpdate
 import { TextWidgetList } from "./components/text/TextWidgetList";
 import { TextListWidgetControls } from "./components/text/TextListWidgetControls";
 import { ImageWidgetListWithUpdate } from "./components/image/ImageWidgetListWithUpdate";
-import { ProductView } from "@artifi/product-views";
-import { AddToCart } from "@artifi/add-to-cart";
-import { Constants, IntegrationConstants } from "@artifi/common";
+import { ProductView } from "@chaitali-nagalkar-amla/product-views";
+import { AddToCart } from "@chaitali-nagalkar-amla/add-to-cart";
+import {
+  Constants,
+  IntegrationConstants,
+} from "@chaitali-nagalkar-amla/common";
 import { AddTextWidget } from "./components/text/AddTextWidget";
 import { AddTextWidgetWithArea } from "./components/text/AddTextWidgetWithArea";
 
-import { addToCartDesign } from "@artifi/add-to-cart";
+import { addToCartDesign } from "@chaitali-nagalkar-amla/add-to-cart";
 import { IntegrationManager } from "./components/integration/IntegrationManager";
 export default function App() {
   const editor = document.getElementById("artifi-editor");

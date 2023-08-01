@@ -1,4 +1,4 @@
-import { generateURL } from "@artifi/common";
+import { generateURL } from "@chaitali-nagalkar-amla/common";
 
 export const ADD_TO_CART_API = generateURL("api/v1/AddToCart/AddToCart");
 

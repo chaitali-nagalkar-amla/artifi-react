@@ -5,14 +5,18 @@ import {
   sendArtifiAddToCartError,
   sendArtifiAddToCartSuccess,
   sendArtifiToCartJSONData,
-} from "@artifi/common";
+} from "@chaitali-nagalkar-amla/common";
 import {
   ADMIN_FOLDER_PATH_KEY,
   FRONT_FOLDER_PATH_KEY,
   IAddToCart,
   IProductView,
 } from "../types/AddToCartTypes";
-import { CANVAS, getSVGByViewData, widgetConstants } from "@artifi/editor";
+import {
+  CANVAS,
+  getSVGByViewData,
+  widgetConstants,
+} from "@chaitali-nagalkar-amla/editor";
 import { ADD_TO_CART_API, OrderStatus } from "../constants/AddToCartConstants";
 
 export async function addToCartDesign(

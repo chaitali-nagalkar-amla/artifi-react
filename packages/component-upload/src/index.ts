@@ -3,6 +3,6 @@ import Upload from "./component/Upload";
 export { Upload };
 
 import { UploadCaption } from "./captions/UploadCaptions";
-import { addTranslations } from "@artifi/common";
+import { addTranslations } from "@chaitali-nagalkar-amla/common";
 
 addTranslations(UploadCaption);

@@ -2,7 +2,7 @@ const { merge } = require("webpack-merge");
 const path = require("path");
 const commonConfig = require("../../webpack.headless.common.config");
 const packageConfig = require("./package.json");
-const bundleFileName = packageConfig.name.split("@artifi/")[1];
+const bundleFileName = packageConfig.name.split("@chaitali-nagalkar-amla/")[1];
 const lerna = require("../../lerna.json");
 
 const config = {

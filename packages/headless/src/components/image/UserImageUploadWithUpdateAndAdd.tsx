@@ -1,11 +1,11 @@
 import { createPortal } from "react-dom";
 import { UploadImageUpdater } from "./UploadImageUpdater";
-import { Upload } from "@artifi/upload";
+import { Upload } from "@chaitali-nagalkar-amla/upload";
 import {
   IImageRule,
   getActiveWidgetData,
   useSliceSelector,
-} from "@artifi/editor";
+} from "@chaitali-nagalkar-amla/editor";
 
 export function UserImageUploadWithUpdateAndAdd() {
   const uploadContainer = document.getElementById("artifi-upload-user-image");
@@ -31,11 +31,13 @@ export function UserImageUploadWithUpdateAndAdd() {
               imageRuleData.userImage.allow &&
               imageRuleData.allowEditable &&
               imageRuleData.allowEditable.allow ? (
-               <Upload onUploadSuccess={onUploadAction}
+                <Upload
+                  onUploadSuccess={onUploadAction}
                   uploadType={uploadType}
                   onUploadError={(data: any) => {
                     console.log("Error Data", data);
-                  }}></Upload>
+                  }}
+                ></Upload>
               ) : (
                 <></>
               )

@@ -1,8 +1,8 @@
 "use client";
-import { ITextBoxRule } from "@artifi/editor";
+import { ITextBoxRule } from "@chaitali-nagalkar-amla/editor";
 import { TextUpdater } from "./TextUpdater";
 import { TextControls } from "./TextControls";
-import { TextArea } from "@artifi/text-area";
+import { TextArea } from "@chaitali-nagalkar-amla/text-area";
 interface TextListProps {
   textWidgets: any;
   viewCode: string;

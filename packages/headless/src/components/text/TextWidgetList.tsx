@@ -2,7 +2,7 @@ import {
   useSliceSelector,
   getWidgetsListByType,
   widgetConstants,
-} from "@artifi/editor";
+} from "@chaitali-nagalkar-amla/editor";
 import { createPortal } from "react-dom";
 import TextList from "./TextList";
 

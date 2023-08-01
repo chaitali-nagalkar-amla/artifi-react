@@ -1,8 +1,8 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import { TextUpdater } from "./TextUpdater";
-import { ITextBoxRule } from "@artifi/editor";
-import { ColorSwatches } from "@artifi/text-color";
+import { ITextBoxRule } from "@chaitali-nagalkar-amla/editor";
+import { ColorSwatches } from "@chaitali-nagalkar-amla/text-color";
 
 export function TextColorWithUpdate() {
   const textColor = document.getElementById("artifi-text-color");

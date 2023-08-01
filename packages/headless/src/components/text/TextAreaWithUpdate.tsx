@@ -1,8 +1,8 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import { TextUpdater } from "./TextUpdater";
-import { ITextBoxRule } from "@artifi/editor";
-import { TextArea } from "@artifi/text-area";
+import { ITextBoxRule } from "@chaitali-nagalkar-amla/editor";
+import { TextArea } from "@chaitali-nagalkar-amla/text-area";
 
 export function TextAreaWithUpdate() {
   const textArea = document.getElementById("artifi-text-area");

@@ -16,7 +16,7 @@ import {
   ITextBoxRule,
   ITextRule,
 } from "../type/editorTypes";
-import { Constants } from "@artifi/common";
+import { Constants } from "@chaitali-nagalkar-amla/common";
 import { IEditorData, IImageWidget, ITextWidget } from "../type/widgetData";
 import {
   ADMIN_FOLDER_PATH_KEY,

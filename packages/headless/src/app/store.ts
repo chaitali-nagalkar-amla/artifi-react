@@ -1,6 +1,9 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
-import { editorSliceName, editorSliceReducer } from "@artifi/editor";
+import {
+  editorSliceName,
+  editorSliceReducer,
+} from "@chaitali-nagalkar-amla/editor";
 
 import configReducer from "../slice/configSlice";
 

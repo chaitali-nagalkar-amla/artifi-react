@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Clipart } from "@artifi/clipart";
-import { Upload } from "@artifi/upload";
+import { Clipart } from "@chaitali-nagalkar-amla/clipart";
+import { Upload } from "@chaitali-nagalkar-amla/upload";
 import {
   useSliceSelector,
   getActiveWidgetData,
-  IImageRule
-} from "@artifi/editor";
+  IImageRule,
+} from "@chaitali-nagalkar-amla/editor";
 import { ChangeWidgetIcon, DeleteWidgetIcon } from "../icons/Icons";
 import { ImageUpdater } from "../image/ImageUpdater";
 import ImageWidgetList from "./ImageWidgetList";
@@ -18,7 +18,7 @@ interface IImageWidgetsData {
   id: string;
   placeholder: string;
   src: string;
-  viewId: string
+  viewId: string;
 }
 
 const ImageList: React.FC<ImageListProps> = ({ imageWidgets, viewCode }) => {
@@ -31,8 +31,8 @@ const ImageList: React.FC<ImageListProps> = ({ imageWidgets, viewCode }) => {
   );
   useEffect(() => {
     if (activeWidget) {
-      setWidgetId(activeWidget.id)
-      setViewId(activeWidget.viewId)
+      setWidgetId(activeWidget.id);
+      setViewId(activeWidget.viewId);
     }
   }, [activeWidget]);
 
@@ -62,9 +62,18 @@ const ImageList: React.FC<ImageListProps> = ({ imageWidgets, viewCode }) => {
         {imageWidgets &&
           imageWidgets.map((data: IImageWidgetsData) => (
             <>
-              <ImageUpdater details={(ruleData: IImageRule, imageData: any, onUpdate: any) => (
-                <ImageWidgetList imageWidgets={data} ruleData={ruleData} onUpdate={onUpdate}></ImageWidgetList>
-              )}
+              <ImageUpdater
+                details={(
+                  ruleData: IImageRule,
+                  imageData: any,
+                  onUpdate: any
+                ) => (
+                  <ImageWidgetList
+                    imageWidgets={data}
+                    ruleData={ruleData}
+                    onUpdate={onUpdate}
+                  ></ImageWidgetList>
+                )}
                 widgetId={data.id}
                 viewCode={viewCode}
                 allowAddFlag={false}

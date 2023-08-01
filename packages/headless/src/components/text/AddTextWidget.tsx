@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addWidget, widgetConstants } from "@artifi/editor";
+import { addWidget, widgetConstants } from "@chaitali-nagalkar-amla/editor";
 export function AddTextWidget() {
   const dispatch = useDispatch();
   const addText = document.getElementById("artifi-add-text");

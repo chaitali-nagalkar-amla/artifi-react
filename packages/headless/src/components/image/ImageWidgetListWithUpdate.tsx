@@ -3,8 +3,8 @@ import {
   useSliceSelector,
   getWidgetsListByType,
   getActiveWidgetData,
-  widgetConstants
-} from "@artifi/editor";
+  widgetConstants,
+} from "@chaitali-nagalkar-amla/editor";
 
 import ImageList from "./ImageList";
 import { ImageUpdater } from "./ImageUpdater";

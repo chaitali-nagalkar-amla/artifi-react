@@ -1,8 +1,13 @@
 import { createPortal } from "react-dom";
 import { ImageUpdater } from "./ImageUpdater";
 
-import { Clipart } from "@artifi/clipart";
-import { widgetConstants, IImageRule, useSliceSelector, getActiveWidgetData } from "@artifi/editor";
+import { Clipart } from "@chaitali-nagalkar-amla/clipart";
+import {
+  widgetConstants,
+  IImageRule,
+  useSliceSelector,
+  getActiveWidgetData,
+} from "@chaitali-nagalkar-amla/editor";
 
 export function ClipartImageWithUpdate() {
   const clipartContainer = document.getElementById("artifi-clipart");
@@ -27,10 +32,10 @@ export function ClipartImageWithUpdate() {
               onSelectAction: any
             ) =>
               imageRuleData &&
-                imageRuleData.cliparts &&
-                imageRuleData.cliparts.allow &&
-                imageRuleData.allowEditable &&
-                imageRuleData.allowEditable.allow ? (
+              imageRuleData.cliparts &&
+              imageRuleData.cliparts.allow &&
+              imageRuleData.allowEditable &&
+              imageRuleData.allowEditable.allow ? (
                 <>
                   <Clipart
                     onSelect={onSelectAction}

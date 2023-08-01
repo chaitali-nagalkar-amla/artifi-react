@@ -1,4 +1,4 @@
-import { generateURL } from "@artifi/common";
+import { generateURL } from "@chaitali-nagalkar-amla/common";
 import { AutoFontSizeConstantType } from "../type/AutoFontSizeConstantType";
 
 export let AutoFontSizeConstant: AutoFontSizeConstantType = {

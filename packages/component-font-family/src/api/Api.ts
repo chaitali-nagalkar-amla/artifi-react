@@ -1,4 +1,4 @@
-import { getAPIData, getAPIUrl } from "@artifi/common";
+import { getAPIData, getAPIUrl } from "@chaitali-nagalkar-amla/common";
 import { FontFamilyConstants } from "../constants/FontFamilyConstant";
 import { FontFamilyType } from "../type/FontFamilyType";
 import WebFont from "webfontloader";
