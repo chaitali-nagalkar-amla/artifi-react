@@ -1,6 +1,5 @@
 {
   "name": "root",
-  "private": true,
   "devDependencies": {
     "@nrwl/nx-cloud": "^16.0.5",
     "lerna": "^6.6.2"
