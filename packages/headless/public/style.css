@@ -7,8 +7,8 @@
       font-family: 'Roboto';
       src: local("Roboto-Regular"),
       url('./Fonts/Roboto-Regular.ttf') format('truetype'),
-      url('./Fonts/Roboto-Regular-webfont.eot') format('eot'),
-      url('./Fonts/Roboto-Regular-webfont.woff') format('woff'),
+      url('./Fonts/Roboto-Regular-webfont.eot'),
+      url('./Fonts/Roboto-Regular-webfont.woff'),
     }
 
     body {
@@ -18,28 +18,29 @@
     }
 
 .main-container{display: flex; width: 100%; justify-content: center;}
-.product-view-container{width: 10%;}
-.product-canvas{width: 50%; flex: 0 0 auto;}
+.product-view-container{width: 8%;}
+.product-canvas{width: 55%; flex: 0 0 auto;}
 .product-control{width: 35%; padding: 0 10px;}
 .cart-btn{margin-bottom: 15px; }
 .cart-btn button{font-family: Roboto;}
+.product-views{display: flex;flex-direction: column;flex-wrap: nowrap; height: 400px; overflow-y:auto; overflow-x: hidden; align-items: center;}
 
 @media only screen and (min-width: 375px) and (max-width: 812px) {  
     .main-container{flex-direction: column ;}
     .product-view-container{order: 2; width: 100%;}
     .product-canvas{order: 1;width: 100%}
     .product-control{order: 3;width: 100%}
-    .product-views{display: flex; justify-content: space-evenly; margin-top: 10px;}
+    .product-views{display: flex; justify-content: space-evenly; flex-direction: row; margin-top: 10px; height: auto; overflow-x: auto;overflow-y: hidden;}
     .designer-editor-wrapper{height: 400px !important;}
-    
 }
 
 @media only screen and (min-width: 470px) and (max-width: 844px){ 
     .main-container{flex-direction: unset ;}
-    .product-view-container{order:1; width: 12%;}
-    .product-canvas{order:2; width: 55%;}
+    .product-view-container{order:1; width: 14%;}
+    .product-canvas{order:2; width: 53%;}
     .product-control{order:3; width: 33%; padding-right: 0;}
     .designer-editor-wrapper{height: 400px !important;}
+    .product-views{flex-direction: column;}
 }
 
     .swatch {

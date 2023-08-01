@@ -23,7 +23,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>React Redux App</title>
+  <title>Branch 101</title>
   <style>
 
   </style>
@@ -32,8 +32,8 @@
 <body>
   <div class="main-container">
     <div id="show-preview"></div>
-    <div class="product-view-container">
-      <div id="artifi-product-views" class="product-views"></div>
+    <div class="product-view-container">ss
+      <div id="artifi-product-views" class="product-views custom-scroll">Artifi Amla eddd</div>
     </div>
     <div class="product-canvas">
       <div id="artifi-add-to-cart" data-art-container="mobile-display" class="cart-btn"></div>
@@ -44,6 +44,7 @@
       <div id="artifi-add-to-cart" data-art-container="desktop-display" class="cart-btn"></div>
       <!-- <div id="artifi-text-widgetMergeList"></div> -->
       <div id="artifi-text-widget-list"></div>
+      <div id="artifi-clipart" data-image-id="" data-view-code="" data-add-widget=""></div>
       <!-- Text List end -->
       <!-- <div id="artifi-text-widget-open-List"></div> -->
       <!-- <div id="artifi-text-widgetList"></div> -->
@@ -106,7 +107,7 @@
           <h3 style="font-size: 16px;">Image Upload</h3>
         </div> -->
     </div>
-    <div id="artifi">XX</div>
+    <div id="artifi"></div>
     <script>
 
       function mobileCheck() {
@@ -131,6 +132,7 @@
           userId: 52,
           isGuest: true,
           sku: "Wristband - Layout 9",
+          extraDetails: { "clientCode": "" }
           // customizedProductId: 0
         });
       };

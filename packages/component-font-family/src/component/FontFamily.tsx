@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { fetchFontFamily } from "../api/Api";
-import { loadFontsByFontCode } from "../api/Api";
+//import { fetchFontFamily, useGetFontFamilyByRuleCodeQuery } from "../api/Api";
+//import { loadFontsByFontCode } from "../api/Api";
 import { FontFamilyType, ITextRule } from "../type/FontFamilyType";
+import { fontFamilyApi, loadFontsByFontCode } from "../api/Api";
 
 interface FontFamilyListProps {
   value: string;
@@ -9,16 +10,18 @@ interface FontFamilyListProps {
   textRule: any;
   viewId?: number;
 }
-let fontFamilyArray: any = {};
 const FontFamily: React.FC<FontFamilyListProps> = ({
   textRule,
   value,
   onUpdate,
-  viewId
+  viewId,
 }) => {
   const [fontFamily, setFontFamily] = useState("");
-  const [fontFamilyData, setFontFamilyData] = useState<FontFamilyType[]>([]);
   const [loader, setLoader] = useState(false);
+  const [getData, data, error] =
+    fontFamilyApi.endpoints.GetFontFamilyByRuleCode.useLazyQuery(
+      textRule.ruleCode
+    );
 
   let code: string;
   let fontId: number;
@@ -27,19 +30,17 @@ const FontFamily: React.FC<FontFamilyListProps> = ({
   }, [viewId]);
 
   const selectFontFamily = (fontFamily: any) => {
-    if (fontFamilyData && fontFamilyData.length > 0) {
-      for (var i = 0; i < fontFamilyData.length; i++) {
-        if (fontFamilyData[i].Value == fontFamily) {
-          code = fontFamilyData[i].Code;
-          fontId = fontFamilyData[i].Id;
+    if (data && data.data.length > 0) {
+      for (var i = 0; i < data.data.length; i++) {
+        if (data.data[i].Value == fontFamily) {
+          code = data.data[i].Code;
+          fontId = data.data[i].Id;
           break;
         }
       }
+      console.log("font family version updated");
       loadFontFamilyData(fontFamily, code, fontId);
     }
-
-    // onUpdate({ fontFamily: font });
-    // setFontFamily(font);
   };
   const loadFontFamilyData = async (
     fontName: string,
@@ -48,10 +49,8 @@ const FontFamily: React.FC<FontFamilyListProps> = ({
   ) => {
     try {
       const fontFamilyData = await loadFontsByFontCode(code, fontName);
-
       if (fontFamilyData) {
         setFontFamily(fontName);
-
         let libProp = { FontId: fontId };
         onUpdate({ fontFamily: fontName, libProp: libProp });
       }
@@ -59,26 +58,26 @@ const FontFamily: React.FC<FontFamilyListProps> = ({
       console.error("Error fetching data:", error);
     }
   };
-  const fetchFontFamilyData = async () => {
-    if (!fontFamilyData.length) {
-      try {
-        setLoader(true);
-        const defaultFontFamilyValue: any = value
-          ? value
-          : textRule
-            ? textRule.fontFamily.defaultValue
-            : "";
-        const fontFamilyData = await fetchFontFamily(textRule.ruleCode);
-        setFontFamilyData(fontFamilyData);
-        fontFamilyArray[textRule.ruleCode] = fontFamilyData;
-        setFontFamily(defaultFontFamilyValue);
-        setLoader(false);
-      } catch (error) {
-        setLoader(false);
+  function fetchFontFamilyData() {
+    try {
+      setLoader(true);
+      const defaultFontFamilyValue: any = value
+        ? value
+        : textRule
+        ? textRule.fontFamily.defaultValue
+        : "";
+      if (data && !data.data) {
+        getData(textRule.ruleCode, true);
+      }
+      if (error) {
         console.error("Error fetching data:", error);
       }
+      setFontFamily(defaultFontFamilyValue);
+      setLoader(false);
+    } catch (e) {
+      console.error("Error fetching data:", error);
     }
-  };
+  }
   return textRule && textRule.fontFamily && textRule.fontFamily.allow ? (
     <select
       className="h-10 w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -86,14 +85,14 @@ const FontFamily: React.FC<FontFamilyListProps> = ({
       onClick={() => fetchFontFamilyData()}
       onChange={(event) => selectFontFamily(event.target.value)}
     >
-      {!fontFamilyData.length ? (
+      {data && !data.data ? (
         <option>{value ? value : textRule.fontFamily.defaultValue}</option>
       ) : (
         <></>
       )}
-      {!fontFamilyData.length && loader ? <option>loading...</option> : <></>}
-      {fontFamilyData ? (
-        fontFamilyData.map((family: FontFamilyType) => (
+      {loader ? <option>loading...</option> : <></>}
+      {data && data.data ? (
+        data.data.map((family: FontFamilyType) => (
           <option key={family.Id} value={family.Value}>
             {family.Value}
           </option>

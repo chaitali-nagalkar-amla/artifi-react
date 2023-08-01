@@ -1,10 +1,10 @@
 import { generateURL } from "@chaitali-nagalkar-amla/common";
 import { UploadConstantType } from "../type/UploadConstantType";
 export const UPLOAD_IMAGE_SETTING_API_PATH = generateURL(
-  "api/v1/UploadImage/GetImageSettings"
+  "api/1/UploadImage/GetImageSettings"
 );
 export const UPLOAD_IMAGE_API_PATH = generateURL(
-  "api/v1/UploadImage/UploadImage"
+  "api/1/UploadImage/UploadImage"
 );
 
 export const UploadConstants: UploadConstantType = {

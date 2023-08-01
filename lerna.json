@@ -3,7 +3,12 @@
   "packages": [
     "packages/*"
   ],
-  "version": "3.0.4",
+  "allowBranch": [
+    "main",
+    "qa"
+  ],
+  "useWorkspaces": true,
+  "version": "5.0.7",
   "includeMergedTags": true,
   "command": {
     "publish": {

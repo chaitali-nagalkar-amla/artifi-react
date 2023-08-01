@@ -24,8 +24,10 @@ import {
   getPreviewUrl,
 } from "./IntegrationManager";
 import { useConstants } from "./useConstants";
-import { getAPIData, getAPIUrl, postAPIData, postUploadAPIData } from "./api";
-import { generateURL } from "./utils";
+
+import { getAPIData, getAPIUrl, postAPIData, postUploadAPIData, getAPIParams } from "./api";
+import { generateURL, getEffectURL } from "./utils";
+
 
 import { IntegrationConstants } from "./constants/IntegrationConstants";
 import { addTranslations } from "./captionsManager";
@@ -36,12 +38,14 @@ export {
   ConstantsType,
   useConstants,
   generateURL,
+  getEffectURL,
   getURL,
   getUserImageURL,
   getClipartImageURL,
   updateInitialConfig,
   getAPIData,
   getAPIUrl,
+  getAPIParams,
   postAPIData,
   updateLaunchConfigData,
   updateCompanyFolderAndDivisionFolder,

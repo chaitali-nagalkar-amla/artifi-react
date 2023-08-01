@@ -27,7 +27,9 @@ import {
 } from "./slice/editorSlice";
 import { getSVGByViewData } from "./slice/editorSliceHelper";
 import { IImageRule, ITextBoxRule, ITextRule } from "./type/editorTypes";
-
+import { generateEffectUrl } from "./slice/effectHelper";
+export { generateEffectUrl }
+import { IImageEffectsProps } from "./type/effectsTypes";
 /*
     Ideally, these functions would live in some `editorSliceApi` module.
 */
@@ -62,4 +64,6 @@ export {
   getActiveViewId,
   getActiveGroupId,
   getSVGByViewData,
+  IImageEffectsProps
 };
+

@@ -4,4 +4,5 @@ export const UploadCaption = {
   SUPPORTED_FILES: "We Support Mentioned File Formats",
   FILE_INVALID_MSG: "File type is invalid",
   SIZE_LIMIT_MSG: "File size exceeds the maximum limit",
+  UPLOAD: "Upload"
 };

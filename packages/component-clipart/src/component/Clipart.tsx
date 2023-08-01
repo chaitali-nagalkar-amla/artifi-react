@@ -1,122 +1,128 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ClipartCategories } from "./ClipartCategories";
 import { ClipartList } from "./ClipartList";
-import { fetchCliparts } from "../api/Api";
+import { clipartApi } from "../api/Api";
 import { ClipartImageType } from "../type/ClipartType";
-import { IClipartProps } from "../type/ClipartComponentType";
+import {
+  IClipartResponseData,
+  IClipartProps,
+} from "../type/ClipartComponentType";
 import { ClipartConstants } from "../constants/ClipartConstant";
+import { LazyLoaderIcon } from "../icons/Icons";
+import { Constants } from "@chaitali-nagalkar-amla/common";
 
 const Clipart: React.FC<IClipartProps> = ({ onSelect, ruleData }) => {
   const [categories, setSubCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [clipartImages, setClipartImages] = useState<ClipartImageType[]>([]);
-  const [defaultCategory, setDefaultCategory] = useState("");
   const [totalImages, setTotalImages] = useState(0);
-  const [isFetchingClipartData, setFetchingClipartData] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [hasNext, setHasNext] = useState(true);
   const [pageIndex, setPage] = useState(1);
+  const [ruleCode, setRuleCode] = useState(ruleData.ruleCode);
+  const [isFetchNextClipartData, setFetchNextClipartData] = useState(false);
   const pageSizeConst = ClipartConstants.PAGE_SIZE;
+  const clipartListContainerRef = useRef<HTMLDivElement>(null);
+  const queryStr = Constants.APP_CONFIG.EXTRA_DETAILS;
+  const clientCode = queryStr ? queryStr.clientCode : "";
 
-  //var container: any;
-
-  const fetchInitialClipartData = async () => {
-    if (hasNext) {
-      setIsLoading(true);
-      try {
-        const clipartData = await fetchCliparts(
-          ruleData.ruleCode,
-          "",
-          pageIndex,
-          pageSizeConst
-        );
-        const { clipartFamilyList, images, totalImages } = clipartData;
-        setClipartImages((prevImages: any) => [...prevImages, ...images]);
-        setSubCategories(clipartFamilyList);
-        setDefaultCategory(clipartFamilyList[0].Id);
-        setTotalImages(totalImages);
-        setPage(pageIndex + 1);
-        setFetchingClipartData(false);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-        setFetchingClipartData(false);
-        setIsLoading(false);
-      }
-    }
-  };
-
-  const isScrolling = () => {
-    const container = document.getElementById("clipart-list-container");
-    if (container) {
-      if (
-        container.scrollTop + container.clientHeight >=
-        container.scrollHeight
-      ) {
-        // Load more user image
-        setFetchingClipartData(true);
-      }
-    }
-  };
+  const { data, isFetching } = clipartApi.endpoints.GetCliparts.useQuery({
+    clientCode: clientCode,
+    ruleCode: ruleCode,
+    folderCode: selectedCategory || "",
+    pageIndex: pageIndex,
+    pageSize: pageSizeConst,
+  });
 
   useEffect(() => {
-    setFetchingClipartData(true);
-    const container = document.getElementById("clipart-list-container");
-    if (container) {
-      container.addEventListener("scroll", isScrolling);
+    // Set the initial clipart image data
+    if (data && data.images && !isFetchNextClipartData) {
+      setClipartInitialData(data);
     }
-    return () => {
-      if (container) {
-        container.addEventListener("scroll", isScrolling);
+    // Update the initial clipart data with the data from the next page obtained.
+    if (data && isFetchNextClipartData) {
+      setClipartImages((prevImages: any) => [...prevImages, ...data.images]);
+    }
+    // If the user image data is empty, update the flag.
+    if (data && data.images && data.images.length == 0) {
+      setHasNext(false);
+      setFetchNextClipartData(false);
+    }
+  }, [data]);
+
+  //Set the initial clipart and category data.
+  const setClipartInitialData = (data: IClipartResponseData) => {
+    const { clipartFamilyList, images, totalImages } = data;
+    setClipartImages(images);
+    categories.length === 0 && setSubCategories(clipartFamilyList);
+    setTotalImages(totalImages);
+  };
+
+  //Update rule code based on view and widget selection
+  useEffect(() => {
+    if (ruleCode != ruleData.ruleCode) {
+      resetClipartCategoryData();
+      setRuleCode(ruleData.ruleCode);
+      setSelectedCategory("");
+      setPage(1);
+      setSubCategories([]);
+    }
+  }, [ruleCode, ruleData.ruleCode]);
+
+  //Scroll
+  useEffect(() => {
+    const clipartListContainer = clipartListContainerRef.current;
+    const handleScroll = () => {
+      if (
+        clipartListContainer &&
+        clipartListContainer.scrollTop + clipartListContainer.clientHeight >=
+          clipartListContainer.scrollHeight
+      ) {
+        // Load more clipart images
+        setFetchNextClipartData(true);
       }
     };
-  }, [totalImages]);
+    //Condition to determine whether or not to get data
+    if (totalImages > pageSizeConst && hasNext && clipartListContainer) {
+      clipartListContainer.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (clipartListContainer) {
+        clipartListContainer.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [totalImages, hasNext, pageSizeConst]);
 
   useEffect(() => {
-    if (isFetchingClipartData) {
+    //If the flag is set to "TRUE," the next clipart data will be retrieved based on the page index.
+    if (isFetchNextClipartData) {
+      //Condition to determine whether to fetch data or not
       if (totalImages >= clipartImages.length) {
-        fetchInitialClipartData();
+        setPage(pageIndex + 1);
       }
       if (totalImages > 0 && totalImages == clipartImages.length) {
-        setIsLoading(false);
         setHasNext(false);
+        setFetchNextClipartData(false);
       }
     }
-  }, [isFetchingClipartData]);
+  }, [isFetchNextClipartData]);
 
-  //Select clipart category
-  useEffect(() => {
-    if (selectedCategory) {
-      fetchCategoryImages(selectedCategory);
-    }
-  }, [selectedCategory]);
-
-  const fetchCategoryImages = async (category: string) => {
-    try {
-      const clipartData = await fetchCliparts(
-        ruleData.ruleCode,
-        category,
-        pageIndex,
-        pageSizeConst
-      );
-      const { images, totalImages } = clipartData;
-      setTotalImages(totalImages);
-      setClipartImages([...images]);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  //Reset the data for the selected clipart category
   const resetClipartCategoryData = () => {
+    setClipartImages([]);
     setPage(1);
     setTotalImages(0);
-  }
+    setHasNext(true);
+    setFetchNextClipartData(false);
+  };
+
   return ruleData && ruleData.cliparts && ruleData.cliparts.allow ? (
     <div data-art-container="image-category">
       {/* Clipart categories list */}
       {categories && categories.length > 1 ? (
         <ClipartCategories
           categories={categories}
-          selectedCategory={selectedCategory || defaultCategory}
+          selectedCategory={selectedCategory}
           onCategoryChange={(selectedCategoryId) => {
             resetClipartCategoryData();
             setSelectedCategory(selectedCategoryId);
@@ -131,10 +137,17 @@ const Clipart: React.FC<IClipartProps> = ({ onSelect, ruleData }) => {
           images={clipartImages}
           allowClipartCaption={true}
           selectAction={onSelect}
-          isLoading={isLoading}
+          isLoading={isFetching}
+          clipartListContainerRef={clipartListContainerRef}
         />
       ) : (
-        <></>
+        <>
+          {isFetching && (
+            <div className="h-20 flex justify-center items-center">
+              <LazyLoaderIcon />
+            </div>
+          )}
+        </>
       )}
     </div>
   ) : (

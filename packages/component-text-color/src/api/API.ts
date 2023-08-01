@@ -1,16 +1,20 @@
-import { getAPIData } from "@chaitali-nagalkar-amla/common";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { TextColorConstants } from "../constants/TextColorConstant";
-import { TextColorType } from "../type/ColorSwatchesType";
-
-// A mock function to mimic making an async request for data
-export async function fetchTextColor(
-  ruleCode: string
-): Promise<TextColorType[]> {
-  const fontFamilyData = await getAPIData(
-    TextColorConstants.TEXT_COLOR_API_PATH,
-    {
-      ruleCode,
-    }
-  );
-  return fontFamilyData.ColorList.AssetList;
-}
+import { getAPIParams } from "@chaitali-nagalkar-amla/common";
+export const textColorApiName = "textColorApi";
+export const textColorApi = createApi({
+  reducerPath: textColorApiName,
+  baseQuery: fetchBaseQuery({
+    baseUrl: TextColorConstants.TEXT_COLOR_API_PATH,
+  }),
+  endpoints: (builder) => ({
+    GetTextColors: builder.query<any, string>({
+      query: (ruleCode: string) => `?${getAPIParams({ ruleCode: ruleCode })}`,
+      transformResponse: (response: any) => {
+        return response.Data?.ColorList?.AssetList;
+      },
+    }),
+  }),
+});
+export const textColorApiReducer = textColorApi.reducer;
+export const { useGetTextColorsQuery } = textColorApi;

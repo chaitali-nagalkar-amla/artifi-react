@@ -62,6 +62,7 @@ export async function uploadFile(file: File, settings: ISettingData) {
         "/" +
         data.UniqueName,
       originalWidth: data.Width,
+      libProp: { photoId: data.Id, ClipartId: null, ClipartFamilyId: null },
     };
   } catch (e: any) {
     return {

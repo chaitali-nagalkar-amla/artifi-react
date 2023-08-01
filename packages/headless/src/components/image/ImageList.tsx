@@ -7,7 +7,7 @@ import {
   IImageRule,
 } from "@chaitali-nagalkar-amla/editor";
 import { ChangeWidgetIcon, DeleteWidgetIcon } from "../icons/Icons";
-import { ImageUpdater } from "../image/ImageUpdater";
+import { ImageUpdater } from "@chaitali-nagalkar-amla/image-updater";
 import ImageWidgetList from "./ImageWidgetList";
 interface ImageListProps {
   imageWidgets: Array<IImageWidgetsData>;

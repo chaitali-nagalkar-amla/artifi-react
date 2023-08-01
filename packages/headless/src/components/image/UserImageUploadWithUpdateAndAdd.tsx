@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { UploadImageUpdater } from "./UploadImageUpdater";
+import { UploadImageUpdater } from "@chaitali-nagalkar-amla/upload-image-updater";
 import { Upload } from "@chaitali-nagalkar-amla/upload";
 import {
   IImageRule,

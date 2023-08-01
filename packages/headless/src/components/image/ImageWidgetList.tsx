@@ -7,6 +7,7 @@ import {
 } from "@chaitali-nagalkar-amla/editor";
 import { ChangeWidgetIcon, DeleteWidgetIcon } from "../icons/Icons";
 import { ImageWidgetListProps } from "../../type/ImageProps";
+import { useTranslation } from "react-i18next";
 
 const ImageWidgetList: React.FC<ImageWidgetListProps> = ({
   imageWidgets,
@@ -17,6 +18,7 @@ const ImageWidgetList: React.FC<ImageWidgetListProps> = ({
   const [widgetId, setWidgetId] = useState("");
   const [viewId, setViewId] = useState("");
   const [uploadError, setUploadError] = useState<any>("");
+  const { t } = useTranslation();
   const activeWidget = useSliceSelector((state: any) =>
     getActiveWidgetData(state)
   );
@@ -77,6 +79,7 @@ const ImageWidgetList: React.FC<ImageWidgetListProps> = ({
                   <button
                     data-art-container="replace-image-area"
                     className="text-black"
+                    title={t("CLIPART")}
                     onClick={() =>
                       showClipartPanel(imageWidgets.id, imageWidgets.viewId)
                     }
@@ -105,6 +108,7 @@ const ImageWidgetList: React.FC<ImageWidgetListProps> = ({
                 ruleData.allowDelete.allow && (
                   <button
                     className="text-black"
+                    title={t("DELETE_GRAPHIC")}
                     data-art-id={imageWidgets.id}
                     onClick={() =>
                       onUpdate({

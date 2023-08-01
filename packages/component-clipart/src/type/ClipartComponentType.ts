@@ -13,3 +13,9 @@ export interface IClipartProps {
   onSelect: (imageValue: any) => void;
   ruleData: any;
 }
+
+export interface IClipartResponseData {
+  clipartFamilyList: [];
+  images: [];
+  totalImages: number;
+}

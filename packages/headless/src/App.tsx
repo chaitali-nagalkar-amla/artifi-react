@@ -30,7 +30,7 @@ import {
 } from "@chaitali-nagalkar-amla/common";
 import { AddTextWidget } from "./components/text/AddTextWidget";
 import { AddTextWidgetWithArea } from "./components/text/AddTextWidgetWithArea";
-
+import { ToastContainer, toast } from "react-toastify";
 import { addToCartDesign } from "@chaitali-nagalkar-amla/add-to-cart";
 import { IntegrationManager } from "./components/integration/IntegrationManager";
 export default function App() {
@@ -51,16 +51,15 @@ export default function App() {
   return (
     <>
       {editor && createPortal(<Editor></Editor>, editor!)}
-
+      asdasd
       {productViews && createPortal(<ProductView></ProductView>, productViews!)}
       {addToCartButton &&
         createPortal(<AddToCart></AddToCart>, addToCartButton!)}
-
       {viewsList && viewsList.length ? (
         <>
+          hhh
           <IntegrationManager></IntegrationManager>
           <TextWidgetList></TextWidgetList>
-
           <TextAreaWithUpdate></TextAreaWithUpdate>
           <BoldWithUpdate></BoldWithUpdate>
           <ItalicWithUpdate></ItalicWithUpdate>
@@ -72,6 +71,18 @@ export default function App() {
           <TextListWidgetControls></TextListWidgetControls>
           <AddTextWidget></AddTextWidget>
           <AddTextWidgetWithArea></AddTextWidgetWithArea>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={true}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
         </>
       ) : (
         ""
@@ -84,7 +95,6 @@ export default function App() {
       ) : (
         ""
       )}
-
       {viewsList && viewsList.length ? (
         <>
           <UserImageUploadWithUpdateAndAdd></UserImageUploadWithUpdateAndAdd>
@@ -93,9 +103,7 @@ export default function App() {
       ) : (
         ""
       )}
-
       {/* {userImages && createPortal(<UserImages />, userImages)} */}
-
       {/* {userImages && createPortal(<UserImages />, userImages)} */}
     </>
   );

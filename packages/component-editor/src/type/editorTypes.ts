@@ -244,6 +244,7 @@ export interface IImageWidgetRule {
   widgetBorder: IRulePropsType;
   price_key: IRulePropsType;
   group_key: IRulePropsType;
+  customFilters: IRulePropsType
 }
 
 export const CanvasEvents = {

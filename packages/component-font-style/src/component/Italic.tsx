@@ -18,7 +18,7 @@ const Italic: React.FC<ItalicProps> = ({
 }) => {
   const [italic, setItalicValue] = useState(italicValue);
 
-  const hoverClass = "hover:border-blue-400";
+  const hoverClass = "lg:hover:border-blue-400";
   const selectClass = "border-blue-400";
 
   const { t } = useTranslation();
@@ -31,9 +31,8 @@ const Italic: React.FC<ItalicProps> = ({
     <button
       value={italic}
       title={t("ITALIC")}
-      className={`flex justify-center items-center p-1 w-11 h-[2.188rem] rounded-md border mx-1 group first:ml-0 last:mr-0 ${
-        italic === "italic" ? selectClass : hoverClass
-      } `}
+      className={`flex justify-center items-center p-1 w-11 h-[2.188rem] rounded-md border mx-1 group first:ml-0 last:mr-0 ${italic === "italic" ? selectClass : hoverClass
+        } `}
       onClick={(e: any) => {
         if (e.currentTarget.value == "italic") {
           onUpdate({ fontStyle: "normal" });

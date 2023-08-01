@@ -1,6 +1,6 @@
 {
   "name": "@chaitali-nagalkar-amla/common",
-  "version": "3.0.4",
+  "version": "5.0.7",
   "description": "Artifi Common Files",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -14,9 +14,9 @@
     "rimraf": "^3.0.2",
     "typescript": "^4.5.4"
   },
-  "gitHead": "aec90bbf35c0c7bd5fc7fab1f4534af9262f81a7",
+  "gitHead": "244e1315a02dd70c876ce2dd917b6a0876092099",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chaitali-nagalkar-amla/artifi-react.git"
+    "url": "https://github.com/umashankar-pardhi-amla/artifi-rtk-research-repo.git"
   }
 }

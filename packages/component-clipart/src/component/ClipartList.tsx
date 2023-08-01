@@ -1,16 +1,17 @@
 import { ClipartImageType, ClipartListProps } from "../type/ClipartType";
-import { LazyLoaderIcon } from '../icons/Icons'
+import { LazyLoaderIcon } from "../icons/Icons";
 export const ClipartList: React.FC<ClipartListProps> = ({
   images,
   allowClipartCaption,
   selectAction,
-  isLoading
+  isLoading,
+  clipartListContainerRef,
 }) => {
   return (
     <>
       {images ? (
         <div
-          id="clipart-list-container"
+          ref={clipartListContainerRef}
           className="grid gap-2 grid-cols-[repeat(auto-fit,_minmax(73px,_1fr))] lg:grid-cols-[repeat(auto-fit,_minmax(72px,_1fr))] md:grid-cols-[repeat(auto-fit,_minmax(75px,_1fr))] max-h-64 overflow-x-hidden overflow-y-auto custom-scroll p-0.5"
         >
           {images ? (
@@ -23,7 +24,8 @@ export const ClipartList: React.FC<ClipartListProps> = ({
                     originalUrl: image.Original,
                     src: image.Standard,
                     originalHeight: image.Height,
-                    originalWidth: image.Width
+                    originalWidth: image.Width,
+                    libProp: { "ClipartId": image.Id, "photoId": null }
                   });
                 }}
               >
@@ -46,7 +48,9 @@ export const ClipartList: React.FC<ClipartListProps> = ({
             <></>
           )}
           {isLoading && (
-            <div className="h-20 flex justify-center items-center"><LazyLoaderIcon /></div>
+            <div className="h-20 flex justify-center items-center">
+              <LazyLoaderIcon />
+            </div>
           )}
         </div>
       ) : (
