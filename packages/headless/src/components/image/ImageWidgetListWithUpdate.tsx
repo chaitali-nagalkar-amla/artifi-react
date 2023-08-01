@@ -7,7 +7,7 @@ import {
 } from "@chaitali-nagalkar-amla/editor";
 
 import ImageList from "./ImageList";
-import { ImageUpdater } from "./ImageUpdater";
+import { ImageUpdater } from "@chaitali-nagalkar-amla/image-updater";
 
 export function ImageWidgetListWithUpdate() {
   const widgetListContainer = document.getElementById("artifi-image-list");

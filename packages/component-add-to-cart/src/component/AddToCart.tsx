@@ -20,7 +20,7 @@ export const AddToCart: React.FC<AddToCartProps> = ({}) => {
   let editorData = useSliceSelector(getEditorData);
 
   const { t } = useTranslation();
-
+  console.log("add to cart changes 3");
   const productViewData = useSliceSelector(getProductViewsData);
 
   const [isLoading, setIsLoading] = useState(false);

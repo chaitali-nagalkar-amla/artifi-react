@@ -1,6 +1,6 @@
 {
   "name": "@chaitali-nagalkar-amla/vertical-alignment",
-  "version": "3.0.4",
+  "version": "5.0.7",
   "description": "vertical alignment Component",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -20,16 +20,16 @@
     "typescript": "^4.5.4"
   },
   "dependencies": {
-    "@chaitali-nagalkar-amla/common": "^3.0.4",
+    "@chaitali-nagalkar-amla/common": "^5.0.7",
     "@reduxjs/toolkit": "^1.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "redux-thunk": "~2.4.1"
   },
-  "gitHead": "aec90bbf35c0c7bd5fc7fab1f4534af9262f81a7",
+  "gitHead": "244e1315a02dd70c876ce2dd917b6a0876092099",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chaitali-nagalkar-amla/artifi-react.git"
+    "url": "https://github.com/umashankar-pardhi-amla/artifi-rtk-research-repo.git"
   }
 }

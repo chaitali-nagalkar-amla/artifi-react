@@ -109,6 +109,7 @@ const Upload: React.FC<IUploadProps> = ({
       <label
         htmlFor={getUploadId()}
         className="font-semibold text-[14px] cursor-pointer flex flex-col items-center justify-center relative"
+        title={`${uploadType ? t("UPLOAD") : ""}`}
       >
         {!loader ? (
           //Upload Logo

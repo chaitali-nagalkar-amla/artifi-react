@@ -1,5 +1,4 @@
-export  interface ClipartConstantType { 
-    CLIPART_API: string;
+export interface ClipartConstantType {
     PAGE_SIZE: number;
 }
 

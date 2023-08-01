@@ -39,7 +39,7 @@
     .product-canvas{order:2; width: 53%;}
     .product-control{order:3; width: 33%; padding-right: 0;}
     .designer-editor-wrapper{height: 400px !important;}
-    
+    .product-views{flex-direction: column;}
 }
 
     .swatch {

@@ -1,32 +1,27 @@
-import { getAPIData, getAPIUrl } from "@chaitali-nagalkar-amla/common";
+import { getAPIUrl } from "@chaitali-nagalkar-amla/common";
 import { FontFamilyConstants } from "../constants/FontFamilyConstant";
-import { FontFamilyType } from "../type/FontFamilyType";
 import WebFont from "webfontloader";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// A mock function to mimic making an async request for data
-export async function fetchFontFamily(
-  ruleCode: string
-): Promise<FontFamilyType[]> {
-  const fontFamilyData = await getAPIData(
-    FontFamilyConstants.FONT_FAMILY_API_PATH,
-    {
-      ruleCode,
-    }
-  );
-  return fontFamilyData.FontFamilyList;
-}
+import { getAPIParams } from "@chaitali-nagalkar-amla/common";
 
-export async function loadFontFamily(
-  fontCode: string
-): Promise<FontFamilyType[]> {
-  const loadFontFamily = await getAPIData(
-    FontFamilyConstants.LOAD_FONT_FAMILY_API_PATH,
-    {
-      fontCode,
-    }
-  );
-  return loadFontFamily;
-}
+export const fontFamilyApiName = "fontFamilyApi";
+export const fontFamilyApi = createApi({
+  reducerPath: fontFamilyApiName,
+  baseQuery: fetchBaseQuery({
+    baseUrl: FontFamilyConstants.FONT_FAMILY_API_PATH,
+  }),
+  endpoints: (builder) => ({
+    GetFontFamilyByRuleCode: builder.query<any, string>({
+      query: (ruleCode: string) => `?${getAPIParams({ ruleCode: ruleCode })}`,
+      transformResponse: (response: any) => {
+        return response.Data?.FontFamilyList;
+      },
+    }),
+  }),
+});
+export const fontFamilyApiReducer = fontFamilyApi.reducer;
+export const { useLazyGetFontFamilyByRuleCodeQuery } = fontFamilyApi;
 
 export async function loadFontsByFontCode(
   fontCode: string,

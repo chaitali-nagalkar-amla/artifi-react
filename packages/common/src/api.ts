@@ -52,6 +52,14 @@ export async function postAPIData(url: string, data: any) {
   }
 }
 
+
+
+export function getAPIParams(params: any) {
+
+  const queryParams = new URLSearchParams(params).toString();
+  const apiUrl = `${queryParams}&websiteId=${Constants.APP_CONFIG.WEBSITE_ID}&webApiClientKey=${Constants.APP_CONFIG.WEB_API_CLIENT_KEY}`;
+  return apiUrl
+}
 export async function postUploadAPIData(url: string, data: any) {
   try {
     const response = await fetch(url, {

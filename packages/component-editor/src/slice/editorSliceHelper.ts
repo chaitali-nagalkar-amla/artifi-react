@@ -18,11 +18,23 @@ import {
 } from "../type/editorTypes";
 import { Constants } from "@chaitali-nagalkar-amla/common";
 import { IEditorData, IImageWidget, ITextWidget } from "../type/widgetData";
+import { toast } from "react-toastify";
 import {
   ADMIN_FOLDER_PATH_KEY,
   FRONT_FOLDER_PATH_KEY,
 } from "../constants/productViewConstants";
-
+import {
+  generateEffectUrl,
+  getBlackAndWhiteFilter,
+  getGrayScaleEffect,
+  getRemoveBackgroundFilter,
+  getTintFilter,
+} from "./effectHelper";
+import {
+  EFFECTS_CONSTANT,
+  RULE_EFFECTS_CONSTANT,
+} from "../constants/effectsConstants";
+import { useTranslation } from "react-i18next";
 /*method will return the product variant data to load based on 
 
 1. If the variant is customized then new design will be loaded on designer
@@ -179,8 +191,6 @@ export function updateWidgetOnEditor(
     editorData
   );
   let canvas = getEditorByViewId(groupId, viewId);
-
-  widget.set(updatedData);
 
   if (updatedData.src) {
     widget.setSrc(updatedData.src, function () {
@@ -488,6 +498,18 @@ export function processCanvasData(
 
     widget = replaceImagePath(widget);
     widget = setWidgetsCorners(widget, rulesData[ruleId]);
+    if (
+      widget.customFilters &&
+      widget.customFilters.length > 0 &&
+      widget.libProp &&
+      (widget.libProp.photoId || widget.libProp.ClipartId)
+    ) {
+      widget.src = generateEffectUrl(
+        widget.customFilters,
+        widget.src,
+        widget.libProp
+      );
+    }
     widget.isAutoFontSize =
       rulesData[ruleId] &&
       rulesData[ruleId].canGrow &&
@@ -497,6 +519,73 @@ export function processCanvasData(
   });
 
   return viewData.DesignJson;
+}
+function setWidgetCustomFilters(ruleCustomFilters: any) {
+  let customFilters: any = [];
+  for (let effect in ruleCustomFilters) {
+    switch (ruleCustomFilters[effect].name) {
+      case EFFECTS_CONSTANT.REMOVE_BACKGROUND:
+      case RULE_EFFECTS_CONSTANT.REMOVE_BACKGROUND: {
+        if (
+          ruleCustomFilters[effect].allow ||
+          ruleCustomFilters[effect].applied ||
+          ruleCustomFilters[effect].data
+        ) {
+          customFilters.push(
+            getRemoveBackgroundFilter(ruleCustomFilters[effect])
+          );
+        }
+        break;
+      }
+      case EFFECTS_CONSTANT.REMOVE_ALL:
+      case RULE_EFFECTS_CONSTANT.REMOVE_ALL: {
+        if (
+          ruleCustomFilters[effect].allow ||
+          ruleCustomFilters[effect].applied
+        ) {
+          customFilters.push(
+            getRemoveBackgroundFilter(ruleCustomFilters[effect])
+          );
+        }
+        break;
+      }
+      case EFFECTS_CONSTANT.TINT:
+      case RULE_EFFECTS_CONSTANT.TINT: {
+        if (
+          ruleCustomFilters[effect].allow ||
+          ruleCustomFilters[effect].applied
+        ) {
+          customFilters.push(getTintFilter(ruleCustomFilters[effect]));
+        }
+        break;
+      }
+      case EFFECTS_CONSTANT.GRAY_SCALE:
+      case RULE_EFFECTS_CONSTANT.GRAY_SCALE: {
+        if (
+          ruleCustomFilters[effect].allow ||
+          ruleCustomFilters[effect].applied
+        ) {
+          customFilters.push(getGrayScaleEffect(ruleCustomFilters[effect]));
+        }
+        break;
+      }
+      case EFFECTS_CONSTANT.BLACK_AND_WHITE:
+      case RULE_EFFECTS_CONSTANT.BLACK_AND_WHITE: {
+        {
+          if (
+            ruleCustomFilters[effect].allow ||
+            ruleCustomFilters[effect].applied
+          ) {
+            customFilters.push(
+              getBlackAndWhiteFilter(ruleCustomFilters[effect])
+            );
+          }
+          break;
+        }
+      }
+    }
+  }
+  return customFilters;
 }
 
 function replaceImagePath(widget: any) {
@@ -715,6 +804,7 @@ function convertRuleData(type: string, ruleData: any) {
       widgetBorder: ruleData.widgetBorder,
       price_key: ruleData.price_key,
       group_key: ruleData.group_key,
+      customFilters: setWidgetCustomFilters(ruleData.effects),
     };
 
     return imgRule;
@@ -814,22 +904,61 @@ export function addImage(
     ruleData,
     updatedProps
   );
-  let win: any = window;
-  fabric.util.loadImage(widgetData.src, function (img: HTMLImageElement) {
-    var imgWidget = new fabric.Image(img, widgetData);
-    imgWidget.setControlsVisibility({
-      mt: false,
-      mb: false,
-      ml: false,
-      mr: false,
+
+  if (
+    widgetData &&
+    widgetData.customFilters &&
+    widgetData.customFilters.length > 0
+  ) {
+    let imageObject = new Image();
+    let effectUrl: string = generateEffectUrl(
+      widgetData.customFilters,
+      widgetData.src,
+      widgetData.libProp
+    );
+    widgetData.src = effectUrl;
+    imageObject.onload = function (image) {
+      var imageSRC = effectUrl;
+      let win: any = window;
+      fabric.util.loadImage(imageSRC, function (img: HTMLImageElement) {
+        var imgWidget = new fabric.Image(img, widgetData);
+        imgWidget.setControlsVisibility({
+          mt: false,
+          mb: false,
+          ml: false,
+          mr: false,
+        });
+        let canvasId = groupId ? groupId + "_" + viewId : viewId;
+        const editor = win[CANVAS][canvasId];
+        editor.add(imgWidget);
+        editor.setActiveObject(imgWidget);
+        editor.renderAll();
+        return imgWidget;
+      });
+    };
+    imageObject.onerror = function () {
+      toast.error("Error Occurred while loading image.");
+    };
+    imageObject.src = effectUrl;
+  } else {
+    let win: any = window;
+    fabric.util.loadImage(widgetData.src, function (img: HTMLImageElement) {
+      var imgWidget = new fabric.Image(img, widgetData);
+      imgWidget.setControlsVisibility({
+        mt: false,
+        mb: false,
+        ml: false,
+        mr: false,
+      });
+      let canvasId = groupId ? groupId + "_" + viewId : viewId;
+      const editor = win[CANVAS][canvasId];
+      editor.add(imgWidget);
+      editor.setActiveObject(imgWidget);
+      editor.renderAll();
+      return imgWidget;
     });
-    let canvasId = groupId ? groupId + "_" + viewId : viewId;
-    const editor = win[CANVAS][canvasId];
-    editor.add(imgWidget);
-    editor.setActiveObject(imgWidget);
-    editor.renderAll();
-    return imgWidget;
-  });
+  }
+
   return widgetData;
 }
 /*method to get image widget properties from rule */
@@ -844,7 +973,7 @@ function getMappedImgProps(
     height: updatedProps.originalHeight,
     width: updatedProps.originalWidth,
   };
-  let dim: any = getDefaultDimension(100, 50, originalImageDimension);
+  let dim: any = getDefaultDimension(200, 150, originalImageDimension);
   let imageData = {
     id: widgetId,
     ruleId: imageRule.ruleId,
@@ -863,7 +992,7 @@ function getMappedImgProps(
     src: updatedProps.src,
     originX: widgetPropertiesConstant.ORIGIN_X,
     originY: widgetPropertiesConstant.ORIGIN_Y,
-    libProp: {},
+    libProp: updatedProps.libProp ? updatedProps.libProp : {},
     scaleX: dim.scaleX,
     scaleY: dim.scaleY,
     originalUrl: updatedProps.originalUrl,
@@ -893,6 +1022,9 @@ function getMappedImgProps(
         ? true
         : false,
     opacity: 1,
+    customFilters: imageRule.effects
+      ? setWidgetCustomFilters(imageRule.effects)
+      : [],
   };
   return imageData;
 }

@@ -24,7 +24,7 @@
     </div>
 
     <div class="product-control">
-      <div id="artifi-add-to-cart" data-art-container="desktop-display" class="cart-btn"></div>
+      <div id="artifi-add-to-cart" data-art-container="desktop-display" class="cart-btn">Artifi</div>
       <div id="artifi-clipart" data-image-id="" data-view-code="" data-add-widget="">
         <h class="heading">Clipart list</h>
       </div>
@@ -63,6 +63,8 @@
         const isGuest = searchParams.get('isGuest');
         const sku = searchParams.get('sku');
         const customizedProductId = searchParams.get('customizedProductId');
+        const clientCode = searchParams.get('clientCode');
+        const extraDetails = { "clientCode": clientCode ? clientCode : "" };
 
 
 
@@ -72,7 +74,8 @@
           userId: userId,
           isGuest: isGuest,
           sku: sku,
-          customizedProductId: customizedProductId
+          customizedProductId: customizedProductId,
+          extraDetails: extraDetails
         });
       };
     </script>

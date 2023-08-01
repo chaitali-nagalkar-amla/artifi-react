@@ -16,7 +16,7 @@ export const Bold: React.FC<BoldProps> = ({
   viewId,
 }) => {
   const [bold, setBoldValue] = useState(boldValue);
-  const hoverClass = "hover:border-blue-400";
+  const hoverClass = "lg:hover:border-blue-400";
   const selectClass = "border-blue-400";
 
   const { t } = useTranslation();
@@ -27,11 +27,11 @@ export const Bold: React.FC<BoldProps> = ({
     <button
       value={bold}
       title={t("BOLD")}
-      className={`flex justify-centerss items-center p-1 w-11 h-[2.188rem] rounded-md border mx-1 group first:ml-0 last:mr-0 ${
+      className={`flex justify-center items-center p-1 w-11 h-[2.188rem] rounded-md border mx-1 group first:ml-0 last:mr-0 ${
         bold === "bold" ? selectClass : hoverClass
       } `}
       onClick={(e: any) => {
-        if (e.currentTarget.value == "bold") {
+        if (e.currentTarget.value == "bold1") {
           onUpdate({ fontWeight: "normal" });
           setBoldValue("normal");
         } else {

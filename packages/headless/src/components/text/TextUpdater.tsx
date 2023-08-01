@@ -9,7 +9,7 @@ import { Constants } from "@chaitali-nagalkar-amla/common";
 import { useDispatch } from "react-redux";
 import { TextProps } from "../../type/TextProps";
 import { useEffect, useState } from "react";
-import { fetchAutoFontSize } from "../../api/API";
+import { autoFontSizeApi } from "../../api/API";
 import { FontSize } from "../../type/AutoFontSizeConstantType";
 
 export function GetTextFontSize(
@@ -56,6 +56,10 @@ export function TextUpdater({ details, widgetId, viewCode }: any) {
   const textRuleData = useSliceSelector((state: any) =>
     getRuleDataByWidgetId(state, widgetConstants.TEXTBOX, widgetId, viewCode)
   );
+  const [getData, data] =
+    autoFontSizeApi.endpoints.GetFontSizeByRuleCode.useLazyQuery(
+      textRuleData.ruleCode
+    );
 
   const widgetData = useSliceSelector((state: any) =>
     getWidgetDataById(state, widgetId, viewCode)
@@ -78,18 +82,17 @@ export function TextUpdater({ details, widgetId, viewCode }: any) {
       return false;
     }
   }
-  const fetchTextAutoSizeData = async () => {
+  function fetchTextAutoSizeData() {
     try {
       if (textRuleData && textRuleData.canGrow && textRuleData.canGrow.allow) {
-        let autoFontSizeDataArray = await fetchAutoFontSize(
-          textRuleData.ruleCode
-        );
-        setFontSizeData(autoFontSizeDataArray);
+        if (data && !data.data) {
+          getData(textRuleData.ruleCode, true);
+        }
       }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
+  }
   const onUpdate = (textProps: TextProps) => {
     if (autoFontSizeAllow(textRuleData, textProps)) {
       var fontSizeArray = fontSizeData;
@@ -101,7 +104,7 @@ export function TextUpdater({ details, widgetId, viewCode }: any) {
           textProps.fontFamily ? textProps.fontFamily : widgetData.fontFamily,
           textProps.fontStyle ? textProps.fontStyle : widgetData.fontStyle,
           textProps.fontWeight ? textProps.fontWeight : widgetData.fontWeight,
-          fontSizeArray,
+          data.data,
           widgetData.lineHeight
         );
         textProps.fontSize = autoFontSize;

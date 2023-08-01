@@ -23,6 +23,7 @@ export interface ConstantsType {
   USER_IMAGES_URL?: string;
   IMAGE_WIDGET: string;
   TEXT_WIDGET: string;
+  IMAGE_EFFECT_URL: string;
 }
 
 export type ImageType = "original" | "thumbnail" | "standard";
@@ -33,7 +34,7 @@ export const Constants: ConstantsType = {
 
   USER_IMAGE_BASE_URL: getImageUrl("designerimages"),
   ADMIN_IMAGE_URL: "",
-  INITIAL_CONFIG_API: getBaseUrl() + "api/v1/LaunchConfig/GetLaunchConfigData",
+  INITIAL_CONFIG_API: getBaseUrl() + "api/1/LaunchConfig/GetLaunchConfigData",
   CLIPART_IMAGE: "",
   PRODUCT_IMAGE: "",
   VARIANT_IMAGE: "",
@@ -46,6 +47,7 @@ export const Constants: ConstantsType = {
   TEXT_WIDGET: "textbox",
   IMAGE_WIDGET: "image",
   FRONT_IMAGE_URL: "",
+  IMAGE_EFFECT_URL: getImageEffectUrl()
 };
 
 function getBaseUrl(): string {
@@ -62,7 +64,20 @@ function getBaseUrl(): string {
       return "http://localhost:3000";
   }
 }
-
+function getImageEffectUrl(): string {
+  switch (process.env.REACT_APP_ENV) {
+    case "prod":
+      return "https://processor.artifi.net/";
+    case "integrationdev":
+      return "https://integrationdevprocessor.artifi.net/";
+    case "integration":
+      return "https://integrationprocessor.artifi.net//";
+    case "stage":
+      return "https://stageprocessor.artifi.net//";
+    default:
+      return "http://localhost:3000";
+  }
+}
 export function getDesignerUrl(): string {
   switch (process.env.REACT_APP_ENV) {
     case "prod":
@@ -111,6 +126,7 @@ export function updateInitialConfig(appConfig: any) {
     IS_GUEST: appConfig.isGuest,
     INITIAL_SKU: appConfig.sku,
     CUSTOMIZED_PRODUCT_ID: appConfig.customizedProductId,
+    EXTRA_DETAILS: appConfig.extraDetails ? appConfig.extraDetails : ""
   };
 }
 

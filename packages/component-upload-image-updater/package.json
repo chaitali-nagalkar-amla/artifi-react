@@ -1,0 +1,35 @@
+{
+  "name": "@chaitali-nagalkar-amla/upload-image-updater",
+  "version": "5.0.7",
+  "description": "upload-image-updater Component",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "rimraf ./lib && tsc && copyfiles -f src/*.css ./lib",
+    "build:watch": "rimraf ./lib && tsc --watch && copyfiles -f src/*.css ./lib"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.194",
+    "@types/node": "^12.20.37",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "@types/react-redux": "^7.1.20",
+    "copyfiles": "~2.4.1",
+    "immer": "~9.0.7",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@chaitali-nagalkar-amla/common": "^5.0.7",
+    "@reduxjs/toolkit": "^1.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "redux-thunk": "~2.4.1"
+  },
+  "gitHead": "244e1315a02dd70c876ce2dd917b6a0876092099",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/umashankar-pardhi-amla/artifi-rtk-research-repo.git"
+  }
+}

@@ -39,7 +39,7 @@ const ImageList: React.FC<ImageListProps> = ({
             <>
               <li
                 key={data.id}
-                className="flex justify-betweeddn mb-2.5 items-center p-2.5 border rounded-lg relative"
+                className="flex justify-between mb-2.5 items-center p-2.5 border rounded-lg relative"
               >
                 <div className="w-16 h-12 flex items-center justify-center pr-1 border-e border-dashed border-black">
                   <img className="max-h-12" src={data.src}></img>

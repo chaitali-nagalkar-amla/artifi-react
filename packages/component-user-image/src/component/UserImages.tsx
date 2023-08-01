@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { deleteUserImage, fetchUserImages } from "../api/Api";
+import React, { useState, useEffect, useRef } from "react";
+import { deleteUserImage, userPhotoApi } from "../api/Api";
 import { IUserImageType } from "../type/UserImageType";
 import { DeleteImageIcon, LazyLoaderIcon } from "../icons/Icons";
 import { IUserImageProps } from "../type/UserImageComponentType";
@@ -7,76 +7,105 @@ import { UserImageConstants } from "../constants/UserImageConstant";
 
 const UserImages: React.FC<IUserImageProps> = ({ onSelectAction }) => {
   const [userImage, setUserImage] = useState<IUserImageType[]>([]);
-  const [totalImages, setTotalImages] = useState(0);
-  const [isUserImageFetching, setUserImageFetching] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasNext, setHasNext] = useState(true);
+  const [imagesAssetCount, setImagesAssetCount] = useState(0);
+  const [isFetchNextUserImageData, setFetchNextUserImageData] = useState(false);
   const [pageIndex, setPageIndex] = useState(1);
-  const pageSize = UserImageConstants.DEFAULT_PAGE_SIZE;
+  const [hasNext, setHasNext] = useState(true);
+  const userImageListContainerRef = useRef<HTMLDivElement>(null);
+  const pageSizeConst = UserImageConstants.DEFAULT_PAGE_SIZE;
 
-  const loadUserImageData = async () => {
-    if (hasNext) {
-      setIsLoading(true);
-      try {
-        const userImages = await fetchUserImages(pageSize, pageIndex);
-        setUserImage((prevImages) => [...prevImages, ...userImages.images]);
-        setTotalImages(userImages.totalImages);
-        setPageIndex(pageIndex + 1);
-        setUserImageFetching(false);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-        setUserImageFetching(false);
-        setIsLoading(false);
-      }
-    }
-  };
-
-  const isScrolling = () => {
-    const container = document.getElementById("user-image-list-container");
-    if (container) {
-      if (
-        container.scrollTop + container.clientHeight >=
-        container.scrollHeight
-      ) {
-        // Load more user image
-        setUserImageFetching(true);
-      }
-    }
-  };
+  const { data, isFetching } = userPhotoApi.endpoints.GetUserPhoto.useQuery({
+    pageIndex: pageIndex,
+    pageSize: pageSizeConst,
+  });
 
   useEffect(() => {
-    setUserImageFetching(true);
-    const container = document.getElementById("user-image-list-container");
-    if (container) {
-      container.addEventListener("scroll", isScrolling);
+    // Set the initial user image data
+    if (
+      data &&
+      data.images &&
+      data.images.length != 0 &&
+      !isFetchNextUserImageData
+    ) {
+      setUserImage(data.images);
+      setImagesAssetCount(data.totalImages);
     }
-    return () => {
-      if (container) {
-        container.addEventListener("scroll", isScrolling);
+    // Update the initial user image data with the data from the next page obtained.
+    if (data && isFetchNextUserImageData) {
+      setUserImage((prevImages: any) => [...prevImages, ...data.images]);
+    }
+
+    // If the user image data is empty, update the flag.
+    if (data && data.totalImages == 0 && data.images.length == 0) {
+      setHasNext(false);
+      setFetchNextUserImageData(false);
+    }
+  }, [data]);
+
+  //Once the userImage state has been updated (new records added), reset the setFetchNextUserImageData flag.
+  useEffect(() => {
+    setFetchNextUserImageData(false);
+  }, [userImage]);
+
+  //Scroll
+  useEffect(() => {
+    const userImageListContainer = userImageListContainerRef.current;
+    const handleScroll = () => {
+      if (
+        userImageListContainer &&
+        userImageListContainer.scrollTop +
+          userImageListContainer.clientHeight >=
+          userImageListContainer.scrollHeight
+      ) {
+        //Retrieving the user image data while scrolling to the bottom
+        setFetchNextUserImageData(true);
       }
     };
-  }, []);
+    //Condition to determine whether or not to get data
+    if (userImageListContainer && hasNext) {
+      userImageListContainer.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (userImageListContainer) {
+        userImageListContainer.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [hasNext]);
 
   useEffect(() => {
-    if (isUserImageFetching && hasNext) {
-      if (totalImages >= userImage.length) {
-        loadUserImageData();
+    //If the flag is set to "TRUE," the next user image data will be retrieved based on the page index.
+    if (isFetchNextUserImageData) {
+      //Condition to determine whether to fetch data or not
+      if (imagesAssetCount > userImage.length) {
+        setPageIndex((prevPageIndex) => prevPageIndex + 1);
       }
-      if (totalImages > 0 && totalImages == userImage.length) {
-        setIsLoading(false);
+      if (
+        (data && data.totalImages === 0) ||
+        imagesAssetCount == userImage.length
+      ) {
         setHasNext(false);
+        setFetchNextUserImageData(false);
       }
     }
-  }, [isUserImageFetching]);
+  }, [isFetchNextUserImageData]);
 
+  //Delete the user image using the selected user photo id.
   const deleteImage = async (userPhotoId: number) => {
-    await deleteUserImage(userPhotoId);
+    let response = await deleteUserImage(userPhotoId);
+    if (!response) {
+      setUserImage((prevImages) =>
+        prevImages.filter((userImages) => userImages.Id !== userPhotoId)
+      );
+      setImagesAssetCount((prevAssetCount) => prevAssetCount - 1);
+    } else if (response && response.message) {
+      console.log("error", response.message);
+    }
   };
 
   return (
     <div
-      id="user-image-list-container"
+      ref={userImageListContainerRef}
       className="grid gap-2 grid-cols-[repeat(auto-fit,_minmax(73px,_1fr))] lg:grid-cols-[repeat(auto-fit,_minmax(72px,_1fr))] md:grid-cols-[repeat(auto-fit,_minmax(75px,_1fr))] max-h-64 overflow-x-hidden overflow-y-auto custom-scroll p-0.5"
     >
       {userImage ? (
@@ -112,8 +141,10 @@ const UserImages: React.FC<IUserImageProps> = ({ onSelectAction }) => {
       ) : (
         <></>
       )}
-      {isLoading && (
-        <div className="h-20 flex justify-center items-center"><LazyLoaderIcon /></div>
+      {isFetching && (
+        <div className="h-20 flex justify-center items-center">
+          <LazyLoaderIcon />
+        </div>
       )}
     </div>
   );

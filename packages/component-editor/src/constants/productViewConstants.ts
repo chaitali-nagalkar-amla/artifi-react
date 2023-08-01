@@ -1,16 +1,16 @@
 import { generateURL } from "@chaitali-nagalkar-amla/common";
 
 export const PRODUCT_VIEWS_API_URL = generateURL(
-  "api/v1/ProductView/GetProductViews"
+  "api/1/ProductView/GetProductViews"
 );
 
 export const FRONT_FOLDER_PATH_KEY = "FrontFolderPathKey";
 export const ADMIN_FOLDER_PATH_KEY = "AdminFolderPathKey";
 
 export const GET_FONT_CSS_API_URL = generateURL(
-  "api/v1/Font/GetFontCssByTemplateCode"
+  "api/1/Font/GetFontCssByTemplateCode"
 );
 
 export const GET_FONT_CSS_BY_DESIGN_ID_URL = generateURL(
-  "api/v1/Font/GetFontCssByDesignId"
+  "api/1/Font/GetFontCssByDesignId"
 );

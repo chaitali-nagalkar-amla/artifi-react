@@ -15,9 +15,14 @@ import {
   IntegrationConstants,
   getPreviewUrl,
 } from "@chaitali-nagalkar-amla/common";
-
+import {
+  autoFontSizeApi,
+  autoFontSizeApiName,
+  autoFontSizeApiReducer,
+} from "./api/API";
 import { InitializeConfigType } from "./type/Type";
 import App from "./App";
+export { autoFontSizeApi, autoFontSizeApiName, autoFontSizeApiReducer };
 
 // Fetch the keys and dispatch the updateConfig action before rendering the app
 const win: any = window;

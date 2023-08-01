@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import { UserImages } from "@chaitali-nagalkar-amla/image";
-import { ImageUpdater } from "./ImageUpdater";
+import { ImageUpdater } from "@chaitali-nagalkar-amla/image-updater";
 import {
   getActiveWidgetData,
   useSliceSelector,

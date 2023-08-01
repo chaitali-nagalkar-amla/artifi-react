@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { ImageUpdater } from "./ImageUpdater";
+import { ImageUpdater } from "@chaitali-nagalkar-amla/image-updater";
 
 import { Clipart } from "@chaitali-nagalkar-amla/clipart";
 import {

@@ -24,4 +24,5 @@ export interface ClipartListProps {
   allowClipartCaption: boolean;
   selectAction: any;
   isLoading: boolean;
+  clipartListContainerRef: any;
 }
