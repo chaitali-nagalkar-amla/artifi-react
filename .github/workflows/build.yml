@@ -1,0 +1,36 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.16.0
+
+      - name: Install dependencies
+        run: npm i
+         npm install @types/node --save-dev
+         npx lerna bootstrap
+         npx lerna exec -- npm install
+      - name: Build packages
+        run:  npx lerna run build
+      - name: publish layout
+        run:  npm run publish-headless
+      - name: publish tablayout
+        run:  npm run publish-tablayout
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: built-packages
+          path: packages/*/lib
